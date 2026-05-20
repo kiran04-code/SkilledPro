@@ -1,13 +1,23 @@
 const mongoose = require('mongoose');
 
 let connectionPromise = null;
+mongoose.set('bufferCommands', false);
+
+const getDbState = () => mongoose.connection.readyState;
+const isDbConnected = () => getDbState() === 1;
 
 const connectDB = async () => {
-  if (mongoose.connection.readyState === 1) return mongoose.connection;
+  if (!process.env.MONGO_URI) {
+    throw new Error('MONGO_URI is not configured');
+  }
+
+  if (isDbConnected()) return mongoose.connection;
   if (connectionPromise) return connectionPromise;
 
   connectionPromise = mongoose
-    .connect(process.env.MONGO_URI)
+    .connect(process.env.MONGO_URI, {
+      serverSelectionTimeoutMS: 10000,
+    })
     .then((conn) => {
       console.log(`MongoDB Connected: ${conn.connection.host}`);
       return conn;
@@ -17,7 +27,7 @@ const connectDB = async () => {
       throw error;
     });
 
-  return connectionPromise;
+  return connectionPromise.then(() => mongoose.connection);
 };
 
-module.exports = connectDB;
+module.exports = { connectDB, isDbConnected, getDbState };
