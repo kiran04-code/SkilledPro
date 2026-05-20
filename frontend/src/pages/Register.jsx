@@ -91,9 +91,9 @@ export default function Register() {
       } catch { toast.dismiss('geocode'); toast.error('Error verifying address.'); setLoading(false); return; }
     }
     try {
-      await register(finalForm);
-      toast.success('Account created! You can now log in.');
-      navigate('/login'); // TEMP: email verification disabled
+      const data = await register(finalForm);
+      toast.success(data.message || 'Account created. Please verify your email.');
+      navigate(`/verify-email?email=${encodeURIComponent(finalForm.email)}`);
     } catch (err) {
       toast.error(err.response?.data?.message || 'Registration failed');
     } finally { setLoading(false); }
