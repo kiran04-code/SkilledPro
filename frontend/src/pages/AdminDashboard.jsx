@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api from '../utils/api';
+import api, { toApiAssetUrl } from '../utils/api';
 import toast from 'react-hot-toast';
 import { CheckCircle, XCircle, Shield, DollarSign, Users, TrendingUp } from 'lucide-react';
 
@@ -14,8 +14,6 @@ export default function AdminDashboard() {
 
   const [reviewingId, setReviewingId] = useState(null);
   const [currentRemark, setCurrentRemark] = useState('');
-
-  const baseUrl = 'http://localhost:5001';
 
   useEffect(() => {
     const fetch = async () => {
@@ -224,7 +222,7 @@ export default function AdminDashboard() {
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 bg-zinc-100 rounded-full overflow-hidden flex items-center justify-center font-bold text-zinc-600 text-lg">
                         {u.avatar
-                          ? <img src={u.avatar.startsWith('http') ? u.avatar : `${baseUrl}/${u.avatar}`} className="w-full h-full object-cover" alt="" />
+                          ? <img src={toApiAssetUrl(u.avatar)} className="w-full h-full object-cover" alt="" />
                           : u.name[0]
                         }
                       </div>
@@ -286,7 +284,7 @@ export default function AdminDashboard() {
                         (u.identityProof.toLowerCase().includes('.pdf') || u.identityProof.toLowerCase().includes('pdf')) ? (
                           <div 
                             onClick={() => {
-                              let finalUrl = u.identityProof.startsWith('http') ? u.identityProof : `${baseUrl}/${u.identityProof}`;
+                              let finalUrl = toApiAssetUrl(u.identityProof);
                               if (finalUrl.toLowerCase().includes('.pdf')) finalUrl = finalUrl.replace(/\.pdf$/i, '.jpg');
                               window.open(finalUrl, '_blank');
                             }}
@@ -295,8 +293,8 @@ export default function AdminDashboard() {
                             View PDF Document
                           </div>
                         ) : (
-                          <a href={u.identityProof.startsWith('http') ? u.identityProof : `${baseUrl}/${u.identityProof}`} target="_blank" rel="noopener noreferrer">
-                            <img src={u.identityProof.startsWith('http') ? u.identityProof : `${baseUrl}/${u.identityProof}`} alt="Identity Proof" className="w-full h-28 object-cover rounded-md border border-zinc-200 hover:border-zinc-300" />
+                          <a href={toApiAssetUrl(u.identityProof)} target="_blank" rel="noopener noreferrer">
+                            <img src={toApiAssetUrl(u.identityProof)} alt="Identity Proof" className="w-full h-28 object-cover rounded-md border border-zinc-200 hover:border-zinc-300" />
                           </a>
                         )
                       ) : <p className="text-xs text-red-500">Not provided</p>}
@@ -308,7 +306,7 @@ export default function AdminDashboard() {
                         (u.addressProof.toLowerCase().includes('.pdf') || u.addressProof.toLowerCase().includes('pdf')) ? (
                           <div 
                             onClick={() => {
-                              let finalUrl = u.addressProof.startsWith('http') ? u.addressProof : `${baseUrl}/${u.addressProof}`;
+                              let finalUrl = toApiAssetUrl(u.addressProof);
                               if (finalUrl.toLowerCase().includes('.pdf')) finalUrl = finalUrl.replace(/\.pdf$/i, '.jpg');
                               window.open(finalUrl, '_blank');
                             }}
@@ -317,8 +315,8 @@ export default function AdminDashboard() {
                             View PDF Document
                           </div>
                         ) : (
-                          <a href={u.addressProof.startsWith('http') ? u.addressProof : `${baseUrl}/${u.addressProof}`} target="_blank" rel="noopener noreferrer">
-                            <img src={u.addressProof.startsWith('http') ? u.addressProof : `${baseUrl}/${u.addressProof}`} alt="Address Proof" className="w-full h-28 object-cover rounded-md border border-zinc-200 hover:border-zinc-300" />
+                          <a href={toApiAssetUrl(u.addressProof)} target="_blank" rel="noopener noreferrer">
+                            <img src={toApiAssetUrl(u.addressProof)} alt="Address Proof" className="w-full h-28 object-cover rounded-md border border-zinc-200 hover:border-zinc-300" />
                           </a>
                         )
                       ) : <p className="text-xs text-red-500">Not provided</p>}
@@ -334,7 +332,7 @@ export default function AdminDashboard() {
                           (url.toLowerCase().includes('.pdf') || url.toLowerCase().includes('pdf')) ? (
                             <div key={i}
                               onClick={() => {
-                                let finalUrl = url.startsWith('http') ? url : `${baseUrl}/${url}`;
+                                let finalUrl = toApiAssetUrl(url);
                                 if (finalUrl.toLowerCase().includes('.pdf')) finalUrl = finalUrl.replace(/\.pdf$/i, '.jpg');
                                 window.open(finalUrl, '_blank');
                               }}
@@ -343,8 +341,8 @@ export default function AdminDashboard() {
                               PDF {i+1}
                             </div>
                           ) : (
-                            <a key={i} href={url.startsWith('http') ? url : `${baseUrl}/${url}`} target="_blank" rel="noopener noreferrer">
-                              <img src={url.startsWith('http') ? url : `${baseUrl}/${url}`} alt={`Work proof ${i+1}`}
+                            <a key={i} href={toApiAssetUrl(url)} target="_blank" rel="noopener noreferrer">
+                              <img src={toApiAssetUrl(url)} alt={`Work proof ${i+1}`}
                                 className="w-20 h-20 object-cover rounded-md border border-zinc-200 hover:border-zinc-300 transition-colors" />
                             </a>
                           )

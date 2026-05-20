@@ -4,19 +4,11 @@ const User = require('../models/User');
 const Notification = require('../models/Notification');
 const { calculateCommission } = require('../utils/commissionCalc');
 const { sendPushNotification } = require('../utils/pushNotification');
+const { getIO } = require('../realtime/io');
 
 /* =========================
    SOCKET SAFE ACCESS
 ========================= */
-
-const getIO = () => {
-  try {
-    const { io } = require('../server');
-    return io;
-  } catch (e) {
-    return null;
-  }
-};
 
 const emitProjectUpdate = (projectId) => {
   const io = getIO();

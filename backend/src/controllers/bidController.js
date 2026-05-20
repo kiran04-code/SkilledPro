@@ -4,6 +4,7 @@ const User = require('../models/User');
 const Notification = require('../models/Notification');
 const { rankWorkers } = require('../utils/rankingAlgo');
 const { sendPushNotification } = require('../utils/pushNotification');
+const { getIO } = require('../realtime/io');
 
 // @POST /api/bids
 const submitBid = async (req, res) => {
@@ -53,16 +54,12 @@ const submitBid = async (req, res) => {
     );
 
     // Get IO and emit real-time updates
-    try {
-      const { io } = require('../server');
-      if (io) {
-        io.to(`user_${project.client}`).emit('notification', {
-          message: notificationMessage,
-        });
-        io.to(project._id.toString()).emit('refresh_project');
-      }
-    } catch (e) {
-      console.error('Socket emission failed:', e);
+    const io = getIO();
+    if (io) {
+      io.to(`user_${project.client}`).emit('notification', {
+        message: notificationMessage,
+      });
+      io.to(project._id.toString()).emit('refresh_project');
     }
 
     res.status(201).json(bid);

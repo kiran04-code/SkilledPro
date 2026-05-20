@@ -2,13 +2,7 @@ const Review = require('../models/Review');
 const Project = require('../models/Project');
 const User = require('../models/User');
 const Notification = require('../models/Notification');
-
-const getIO = () => {
-  try {
-    const { io } = require('../server');
-    return io;
-  } catch (e) { return null; }
-};
+const { getIO } = require('../realtime/io');
 
 const submitReview = async (req, res) => {
   try {

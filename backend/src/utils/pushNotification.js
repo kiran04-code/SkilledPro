@@ -1,18 +1,35 @@
 const admin = require('firebase-admin');
+const fs = require('fs');
+const path = require('path');
 const User = require('../models/User');
 
+const loadServiceAccount = () => {
+  if (process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
+    return JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+  }
+
+  const localKeyPath = path.resolve(__dirname, '../../firebase-key.json');
+  if (fs.existsSync(localKeyPath)) {
+    return JSON.parse(fs.readFileSync(localKeyPath, 'utf8'));
+  }
+
+  return null;
+};
+
 // Initialize Firebase Admin
-// It's recommended to use environment variables for service account details
 if (!admin.apps.length) {
   try {
-    // Load the service account JSON file from the root of the backend folder
-    // ENSURE THIS FILE IS THE UNEDITED DOWNLOAD FROM FIREBASE CONSOLE
-    const serviceAccount = require('../../firebase-key.json');
+    const serviceAccount = loadServiceAccount();
 
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount)
-    });
-    console.log('Firebase Admin Initialized');
+    if (!serviceAccount) {
+      console.warn('Firebase Admin skipped: no service account credentials configured.');
+    } else {
+      admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+      });
+
+      console.log('Firebase Admin Initialized');
+    }
   } catch (error) {
     console.error('Firebase Admin Initialization Error:', error);
   }
@@ -44,6 +61,11 @@ const sendPushNotification = async (userId, title, body, data = {}) => {
       },
       token: user.fcmToken
     };
+
+    if (!admin.apps.length) {
+      console.log('Push notification skipped: Firebase Admin is not configured');
+      return;
+    }
 
     const response = await admin.messaging().send(message);
     console.log('Push notification sent successfully:', response);

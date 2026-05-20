@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { useAuth } from './AuthContext';
 import toast from 'react-hot-toast';
+import { API_ORIGIN } from '../utils/api';
 
 const SocketContext = createContext();
 
@@ -11,7 +12,7 @@ export const SocketProvider = ({ children }) => {
 
   useEffect(() => {
     if (user?._id) {
-      const newSocket = io('http://localhost:5001');
+      const newSocket = io(import.meta.env.VITE_SOCKET_URL || API_ORIGIN);
 
       newSocket.emit('join_user', user._id);
 
