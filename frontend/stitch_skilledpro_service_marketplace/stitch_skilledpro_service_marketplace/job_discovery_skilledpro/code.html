@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-surface-variant": "#45464e",
+                    "surface-container": "#e5eeff",
+                    "primary": "#2E3A59",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-container": "#e59300",
+                    "on-secondary-container": "#00714d",
+                    "on-primary-container": "#98a4c9",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#2E3A59",
+                    "tertiary-container": "#553300",
+                    "secondary-container": "#10B981",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary": "#10B981",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary": "#372000",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002113",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed": "#10B981",
+                    "on-error-container": "#93000a",
+                    "outline": "#75777e",
+                    "background": "#f8f9ff",
+                    "outline-variant": "#c6c6ce",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary-fixed": "#dae2ff",
+                    "on-surface": "#0b1c30",
+                    "inverse-primary": "#bac6ec",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3a4666",
+                    "on-primary-fixed": "#0d1a38",
+                    "surface-tint": "#525e7f",
+                    "primary-fixed-dim": "#bac6ec",
+                    "inverse-surface": "#213145"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "xl": "64px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Manrope"],
+                    "h2": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "button": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "h3": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "button": ["16px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fill-icon {
+            font-variation-settings: 'FILL' 1;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-background">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-xl shadow-slate-500/10">
+<div class="flex justify-between items-center px-6 py-3 w-full max-w-[1280px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-[#2E3A59] tracking-tighter">ProMarket</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="font-manrope antialiased tracking-tight text-[#2E3A59] border-b-2 border-[#2E3A59] pb-1" href="#">Find Work</a>
+<a class="font-manrope antialiased tracking-tight text-slate-500 hover:text-[#2E3A59] transition-colors" href="#">Hire Talent</a>
+<a class="font-manrope antialiased tracking-tight text-slate-500 hover:text-[#2E3A59] transition-colors" href="#">Messages</a>
+<a class="font-manrope antialiased tracking-tight text-slate-500 hover:text-[#2E3A59] transition-colors" href="#">Workspace</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-50 border-slate-200 rounded-lg text-sm focus:ring-2 focus:ring-[#2E3A59] outline-none w-64 transition-all" placeholder="Search projects..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 hover:bg-slate-50/50 rounded-lg active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50/50 rounded-lg active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged male contractor with a friendly expression. He is wearing a high-quality grey polo shirt against a blurred office background. The lighting is soft and natural, emphasizing a high-trust, professional aesthetic consistent with a premium marketplace platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbHNixAJ44eRYcIfR9-uWUuKj_WmqmWivfAZaKbgSFjUU9MNKVr_QWw2lCQcSZ4mU1LbJPY_jEXq_CYcPdXy6OuRcjuf5ef4qCRE_a0agHwMXmDB_Z54ydmOVu3WgLRuDm00DyniuA_j1wPEROviIM_1Ol7c4CTznpprytiQMwAde-5OB4xLa705Zg8WkUfBoYDNa2RaEKNFt-PNqoYUC3PZa4muQD02Ut7z11FjRA6QsEtRhC1qiqAUvM5MssiGaPdKcny85pXhPA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 border-r border-slate-200 bg-white z-40 hidden xl:flex flex-col pt-20 pb-6">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-4">
+<div class="w-10 h-10 rounded-lg bg-[#2E3A59] flex items-center justify-center text-white font-bold">AR</div>
+<div>
+<p class="font-manrope font-bold text-[#2E3A59] text-sm">Alex Rivers</p>
+<p class="text-xs text-slate-500">Expert Contractor</p>
+</div>
+</div>
+<button class="w-full py-3 bg-[#2E3A59] text-white rounded-xl font-button text-sm hover:opacity-90 transition-all shadow-lg shadow-slate-200 active:scale-95">
+                Post a Project
+            </button>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<div class="flex items-center gap-3 px-4 py-3 cursor-pointer transition-transform hover:bg-slate-50 rounded-lg text-slate-600 font-manrope font-semibold text-sm">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 cursor-pointer transition-transform bg-slate-50 text-[#2E3A59] border-r-4 border-[#2E3A59] rounded-lg font-manrope font-semibold text-sm">
+<span class="material-symbols-outlined fill-icon" data-icon="distance" style="font-variation-settings: 'FILL' 1;">distance</span>
+<span>Map View</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 cursor-pointer transition-transform hover:bg-slate-50 rounded-lg text-slate-600 font-manrope font-semibold text-sm">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span>Project List</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 cursor-pointer transition-transform hover:bg-slate-50 rounded-lg text-slate-600 font-manrope font-semibold text-sm">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span>Wallet</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 cursor-pointer transition-transform hover:bg-slate-50 rounded-lg text-slate-600 font-manrope font-semibold text-sm">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</div>
+</nav>
+<div class="px-4 mt-auto border-t border-slate-100 pt-4 space-y-1">
+<div class="flex items-center gap-3 px-4 py-3 cursor-pointer transition-transform hover:bg-slate-50 rounded-lg text-slate-500 font-manrope font-semibold text-sm">
+<span class="material-symbols-outlined" data-icon="support">support</span>
+<span>Help Center</span>
+</div>
+<div class="flex items-center gap-3 px-4 py-3 cursor-pointer transition-transform hover:bg-slate-50 rounded-lg text-error font-manrope font-semibold text-sm">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="pt-[64px] xl:pl-64 h-screen flex overflow-hidden">
+<!-- Left Column: Search & Project List -->
+<section class="w-full lg:w-1/2 xl:w-[480px] h-full flex flex-col bg-white border-r border-slate-200">
+<!-- Header & Filters -->
+<div class="p-6 border-b border-slate-100 space-y-4">
+<div class="flex items-center justify-between">
+<h1 class="font-h1 text-h3 text-slate-950">Discover Projects</h1>
+<span class="bg-slate-50 text-[#2E3A59] px-3 py-1 rounded-full text-xs font-bold">128 Jobs Near You</span>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="whitespace-nowrap px-4 py-2 rounded-full bg-[#2E3A59] text-white text-xs font-bold">All Fields</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50 transition-colors">Plumbing</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50 transition-colors">Electrical</button>
+<button class="whitespace-nowrap px-4 py-2 rounded-full border border-slate-200 text-slate-600 text-xs font-bold hover:bg-slate-50 transition-colors">HVAC</button>
+</div>
+</div>
+<!-- Scrollable List -->
+<div class="flex-1 overflow-y-auto p-4 space-y-4 bg-slate-50/50">
+<!-- Project Card 1 -->
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<div>
+<span class="text-xs font-bold text-[#10B981] bg-[#10B981]/10 px-2 py-1 rounded mb-2 inline-block">98% Skill Match</span>
+<h3 class="font-h3 text-body-lg text-slate-950 group-hover:text-[#2E3A59] transition-colors">Industrial HVAC System Overhaul</h3>
+</div>
+<span class="text-on-surface-variant font-bold text-sm">$4,200</span>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-1 text-slate-500 text-xs">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Downtown Core (1.2 mi)</span>
+</div>
+<div class="flex items-center gap-1 text-slate-500 text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>Starts Monday</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-50">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[8px] font-bold">JD</div>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[8px] font-bold text-[#2E3A59]">+3</div>
+</div>
+<button class="text-[#2E3A59] font-button text-xs flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<div>
+<span class="text-xs font-bold text-amber-600 bg-amber-50 px-2 py-1 rounded mb-2 inline-block">85% Skill Match</span>
+<h3 class="font-h3 text-body-lg text-slate-950 group-hover:text-[#2E3A59] transition-colors">Residential Smart Grid Integration</h3>
+</div>
+<span class="text-on-surface-variant font-bold text-sm">$1,850</span>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-1 text-slate-500 text-xs">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>North Heights (3.4 mi)</span>
+</div>
+<div class="flex items-center gap-1 text-slate-500 text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>Urgent Fix</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-50">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[8px] font-bold">MK</div>
+</div>
+<button class="text-[#2E3A59] font-button text-xs flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all cursor-pointer group">
+<div class="flex justify-between items-start mb-3">
+<div>
+<span class="text-xs font-bold text-[#2E3A59] bg-slate-50 px-2 py-1 rounded mb-2 inline-block">New Listing</span>
+<h3 class="font-h3 text-body-lg text-slate-950 group-hover:text-[#2E3A59] transition-colors">Commercial Pipe Network Diagnostic</h3>
+</div>
+<span class="text-on-surface-variant font-bold text-sm">$2,400</span>
+</div>
+<div class="flex items-center gap-4 mb-4">
+<div class="flex items-center gap-1 text-slate-500 text-xs">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span>Riverfront (0.8 mi)</span>
+</div>
+<div class="flex items-center gap-1 text-slate-500 text-xs">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span>Flexible Timeline</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-slate-50">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-200 flex items-center justify-center text-[8px] font-bold">SL</div>
+<div class="w-6 h-6 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[8px] font-bold text-[#2E3A59]">+1</div>
+</div>
+<button class="text-[#2E3A59] font-button text-xs flex items-center gap-1 group-hover:gap-2 transition-all">
+                            View Details <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Profile Strength Meter (Bento-style insertion) -->
+<div class="bg-[#2E3A59] text-white p-6 rounded-2xl shadow-xl shadow-slate-200 space-y-4">
+<div class="flex justify-between items-center">
+<p class="font-manrope font-bold text-sm">Profile Visibility</p>
+<span class="text-xs font-bold bg-[#10B981] px-2 py-1 rounded">75%</span>
+</div>
+<div class="flex gap-1 h-2">
+<div class="flex-1 bg-[#10B981] rounded-full"></div>
+<div class="flex-1 bg-[#10B981] rounded-full"></div>
+<div class="flex-1 bg-[#10B981] rounded-full"></div>
+<div class="flex-1 bg-white/20 rounded-full"></div>
+</div>
+<p class="text-xs text-slate-200">Add 2 certifications to unlock "Featured Expert" status and reach 4x more clients.</p>
+</div>
+</div>
+</section>
+<!-- Right Column: Interactive Map -->
+<section class="hidden lg:block flex-1 relative bg-slate-100">
+<!-- Map Background Placeholder -->
+<div class="absolute inset-0 z-0">
+<img alt="Interactive Map" class="w-full h-full object-cover grayscale opacity-50 contrast-125" data-alt="A high-contrast, stylized architectural map of a modern city center with minimalist grid lines and soft indigo water features. The map uses a light-mode aesthetic with pastel shades of grey and blue. Several glowing emerald markers are scattered across the urban landscape, representing job locations, with a subtle 3D tilt perspective creating depth and a premium technology feel." data-location="San Francisco" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9OsPA1yx3gK_wV_UsqawXVZFY---tKk4H-L8p_boJwOCGbTw84qGr1ldrch7erhZgAbvwrvrBx73cAVCF7xN5RUzwiI08mIuaw78Wl-fL1IRZWwwIaJfyRDKVSZwwek0YY5oq49YH5aa6CnWfPlul-g1GMQbY3Pao8SDZIFZ0S45DSVbhP78yL3BTKu3-83KnxwwZGLvwRCrwx9fWSSs_R5tRZUMr7KvcL5dzRClro0xoOtbLblQmbQ187sqfBOjcns6Om_hvf12p"/>
+</div>
+<!-- Map UI Overlays -->
+<div class="absolute top-6 left-6 z-10 flex flex-col gap-3">
+<div class="bg-white/90 backdrop-blur-md p-2 rounded-xl shadow-lg border border-white/50 flex flex-col gap-1">
+<button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600 transition-colors">
+<span class="material-symbols-outlined">add</span>
+</button>
+<div class="h-px bg-slate-200 mx-2"></div>
+<button class="p-2 hover:bg-slate-100 rounded-lg text-slate-600 transition-colors">
+<span class="material-symbols-outlined">remove</span>
+</button>
+</div>
+<button class="bg-white/90 backdrop-blur-md p-3 rounded-xl shadow-lg border border-white/50 text-slate-600 hover:text-[#2E3A59] transition-all active:scale-95">
+<span class="material-symbols-outlined">my_location</span>
+</button>
+</div>
+<!-- Custom Map Marker (Highlighted Job) -->
+<div class="absolute top-[35%] left-[45%] z-20 group">
+<div class="relative">
+<!-- Ripple Animation Simulation -->
+<div class="absolute inset-0 scale-150 animate-ping bg-slate-400/20 rounded-full"></div>
+<!-- Marker -->
+<div class="relative bg-[#2E3A59] text-white p-2 rounded-full shadow-xl border-2 border-white cursor-pointer hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-lg fill-icon" style="font-variation-settings: 'FILL' 1;">construction</span>
+</div>
+<!-- Popup Preview -->
+<div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 bg-white rounded-2xl shadow-2xl border border-slate-100 p-4 opacity-0 group-hover:opacity-100 transition-all pointer-events-none translate-y-2 group-hover:translate-y-0">
+<img alt="Job Site" class="w-full h-32 object-cover rounded-xl mb-3" data-alt="A crisp, high-resolution photo of a modern industrial facility interior with exposed ventilation pipes and polished concrete floors. The lighting is bright and professional, highlighting a clean, sophisticated workspace. The image is framed within a mobile-style UI card with rounded corners, maintaining the expert facilitator brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw892jvnGxBk5b-mMQYe6LuB7wSrVb4JLHYFBDapIUW3h7mJ-IKrGbB6V4Kouy-aeDd4jaY-fg493H2r_QYl7wNxBehwEpZBubgYguJvqrXJZgYsND9swivgUWzPy2DNEkQ7WmzOWCjV8LL_MSKL4y53R7V6dDysYQ9dS7Wfow0OCWd8nbI5wvqMswNoBIAxqm5dD7VbshadGM3dWgNk0jqJi18LRXhtIo2xFHL2Ppq3LBRt2fvaZK1BzWEH6t9ffcFUSJrHifC_E0"/>
+<h4 class="font-bold text-[#2E3A59] text-sm mb-1">Industrial HVAC Overhaul</h4>
+<p class="text-xs text-slate-500 mb-3">1.2 miles away • Posted 2h ago</p>
+<div class="flex items-center justify-between">
+<span class="text-sm font-bold text-[#2E3A59]">$4,200</span>
+<span class="text-[10px] font-bold text-[#10B981] uppercase tracking-wider">Top Match</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Map Floating Action Button (Only on Home/Map) -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-30">
+<button class="bg-[#2E3A59] text-white px-8 py-4 rounded-full font-button shadow-2xl flex items-center gap-3 hover:opacity-90 transition-all active:scale-95 border border-white/20">
+<span class="material-symbols-outlined">add_task</span>
+                    Create Quick Quote
+                </button>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-100 px-6 py-3 flex justify-between items-center z-50">
+<div class="flex flex-col items-center gap-1 text-[#2E3A59]">
+<span class="material-symbols-outlined fill-icon" style="font-variation-settings: 'FILL' 1;">explore</span>
+<span class="text-[10px] font-bold">Discover</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-[10px] font-bold">Jobs</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="text-[10px] font-bold">Chat</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</div>
+</nav>
+</body></html>

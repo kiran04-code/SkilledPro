@@ -1,0 +1,25 @@
+Done        1. Even after completing the project and closing from both sides it stays in bids section which should be moved to projects or projects completed section
+Done        2. There is no sepate invisible line which separate the supplier and customer like a user account can post projects and recruiter can accept the project 
+Done        3. Notification panel issue:
+                When recive the notification there is a blue dot with number on notification symbol but even after opening that notifications remain unread and need to click on each notification to mark it as read
+                Also even after clicking on notification, nothing happens; it should open the incidence for which notification is got, like for a bid if I get notification then after clicking on it should open the project details of project for which I get notified.
+        4. It doesn't have the verification for emails and mobile numbers, need to activate firebase authentication.
+Done        5. The "Open Chat" button on a project
+                The open chat button on a project opens the chat but after typing the messege it does't appear on chat window until the page is refreshed and also new recived messages are not visible until the page is refreshed.
+Done        6. On the dashboard of recruiter it shows 'client' and on the dashboard of applicant it shows 'Expert Contractor'
+Done        7. There is button of 'Hire Talent' on the applicant's dashboard which should not be there and after clicking on it it redirects the user to 'workspace'
+Done        8. The 'Help Center' button is not working "IT DOES NOTHING" 
+Pending        9. There are very few categories for 'Skills'
+Done        10. There is a 'Map View Button' on applicant dashboard which should not be there and it just redirects the user to dashboard
+Done        11. The 'Project List' is visible to both 'recruiter' and 'applicant' but it should only be visible to 'recruiter'
+Pending        12. Work submmited by applicant is never recived to the recruiter, recruiter have no option to see work done or progress on that work 
+Pending        13. Website is not responsive for mobile screens
+Partial        14. As a recruiter I placed a project for 12000 and I got a bid of 13000 which I accepted, I paid 13000 and developer got 12350 as platform charges were deducted, but on the dashboard of applicant it shows '₹12350 ESCROW EARNINGS' which is fine but on recriter side it shows '12000 Total Investment' where recruiter actually invested 13000 
+Done        15. There is a post project button on sidepanel of 'applicant's dashboard which should not be there, insted there should be search product button there
+Pending        16. The 'Setting' and 'Profile'(Edit Profile) buttons opens same page, there is no settings page 
+Done        17. There is 'See All Notifications' button at the end of recent notifications panel which does nothing
+
+New Issues:
+        18. The admin page is not SEPARATE, it is just a recruiter page with one tab of admin
+        19.  The Jobs completed by applicant are not visible in completed Jobs tab
+        20.  The 14 number issue is resolved but now when applicant revise the price and recruiter accept it, it doesn't get updated in total investment of recruiter

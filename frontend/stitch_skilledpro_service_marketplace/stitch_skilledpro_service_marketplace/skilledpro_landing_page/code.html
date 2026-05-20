@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkilledPro | Trusted Local Professional Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#dfc38b",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#525e7f",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#00714d",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#fddfa4",
+                        "surface-dim": "#cbdbf5",
+                        "on-tertiary-container": "#bca26c",
+                        "tertiary": "#312300",
+                        "inverse-surface": "#213145",
+                        "on-surface-variant": "#45464e",
+                        "on-primary-container": "#98a4c9",
+                        "surface": "#f8f9ff",
+                        "tertiary-container": "#4a380c",
+                        "on-primary-fixed": "#0d1a38",
+                        "primary-fixed": "#dae2ff",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface": "#0b1c30",
+                        "on-secondary-fixed": "#002113",
+                        "surface-container-high": "#dce9ff",
+                        "inverse-primary": "#bac6ec",
+                        "background": "#f8f9ff",
+                        "surface-container-low": "#eff4ff",
+                        "secondary-container": "#6cf8bb",
+                        "on-background": "#0b1c30",
+                        "on-secondary-fixed-variant": "#005236",
+                        "secondary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#6ffbbe",
+                        "outline": "#75777e",
+                        "on-tertiary-fixed-variant": "#574417",
+                        "primary-fixed-dim": "#bac6ec",
+                        "on-primary-fixed-variant": "#3a4666",
+                        "secondary": "#006c49",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f8f9ff",
+                        "primary-container": "#2e3a59",
+                        "on-error-container": "#93000a",
+                        "outline-variant": "#c6c6ce",
+                        "primary": "#182442",
+                        "surface-container": "#e5eeff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "12px",
+                        "xl": "80px",
+                        "md": "24px",
+                        "xs": "4px",
+                        "base": "8px",
+                        "container-max": "1280px",
+                        "lg": "48px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "button": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "display": ["Manrope"],
+                        "h2": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h1": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "button": ["16px", {"lineHeight": "1", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "h3": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background selection:bg-secondary-container">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full flex justify-between items-center px-8 h-16 bg-white/70 backdrop-blur-md z-50 border-b border-slate-200/50 shadow-sm font-manrope antialiased tracking-tight">
+<div class="flex items-center gap-8">
+<span class="text-xl font-extrabold text-slate-900">SkilledPro</span>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-slate-900 font-bold border-b-2 border-slate-900 pb-1" href="#">Browse Jobs</a>
+<a class="text-slate-500 font-medium hover:text-slate-700 transition-colors duration-200" href="#">Find Pros</a>
+<a class="text-slate-500 font-medium hover:text-slate-700 transition-colors duration-200" href="#">How it Works</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-slate-800" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined text-slate-800" data-icon="chat">chat</span>
+</button>
+<button class="flex items-center gap-2 pl-2 pr-1 py-1 border border-slate-200 rounded-full hover:bg-slate-50 transition-colors duration-200">
+<span class="text-slate-700 font-medium text-body-sm px-2">Account</span>
+<span class="material-symbols-outlined text-slate-800" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex items-center overflow-hidden bg-primary px-8">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover opacity-40 mix-blend-luminosity" data-alt="A professional electrician wearing a clean navy blue uniform and protective gear, meticulously inspecting a modern electrical panel in a bright, high-end residential setting. The lighting is crisp and natural, highlighting technical precision and competence. The color palette features deep slate blues and clean whites, reflecting a corporate modern aesthetic with a focus on trust and high-tier service." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTDCSGafBrTOpR_OvoT67Prg3JI-DNFyGcp3RtIMCz3yz7YTyMhdUVIxDAhfhKsTpSvRrxyKsSWjClWNFEWdARxfgfGEAtu_gXfXC4sY6m-3N0jkR-OqxrabAXa4VcljaPhh0JG8_HzMFhwaoRBP2O465ge0uz9b2-eR5XhqpCokdyQ2vu9u4oLvYoQaPybQHLKZwkWjAg-MTTqVUKqvaZw5cgOwjMuv07saGxrVrTwP7_LN6SJ-fFNlWMDf-IyAopTB6ktU1E_prm"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-base">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 border border-secondary-container/30 text-secondary-fixed">
+<span class="material-symbols-outlined text-[18px]" data-icon="verified_user" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-caps text-on-secondary-container">12,400+ VERIFIED PROFESSIONALS</span>
+</div>
+<h1 class="font-display text-display text-white max-w-xl">
+                        Find Trusted Local Pros for Any Job.
+                    </h1>
+<p class="font-body-lg text-body-lg text-primary-fixed-dim max-w-lg mb-8">
+                        The elite marketplace for high-tier professional services. From complex electrical engineering to master plumbing, we connect you with certified excellence.
+                    </p>
+<!-- Search Bar -->
+<div class="glass-panel p-2 rounded-xl flex flex-col md:flex-row gap-2 max-w-2xl shadow-xl">
+<div class="flex-1 flex items-center px-4 gap-3 bg-white/50 rounded-lg border border-slate-200">
+<span class="material-symbols-outlined text-slate-400" data-icon="search">search</span>
+<input class="w-full py-3 bg-transparent border-none focus:ring-0 text-slate-900 font-medium" placeholder="What service do you need?" type="text"/>
+</div>
+<div class="md:w-48 flex items-center px-4 gap-3 bg-white/50 rounded-lg border border-slate-200">
+<span class="material-symbols-outlined text-slate-400" data-icon="location_on">location_on</span>
+<input class="w-full py-3 bg-transparent border-none focus:ring-0 text-slate-900 font-medium" placeholder="Zip code" type="text"/>
+</div>
+<button class="bg-secondary text-white px-8 py-3 rounded-lg font-button hover:bg-on-secondary-fixed-variant transition-all transform active:scale-95 shadow-lg">
+                            Search
+                        </button>
+</div>
+</div>
+<div class="hidden lg:grid grid-cols-2 gap-4">
+<div class="space-y-4 pt-12">
+<div class="glass-panel p-4 rounded-xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a confident male professional in a smart casual business outfit, smiling warmly against a blurred corporate office background. High-key lighting emphasizing clarity and friendliness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEbcjmphfAZQDAT9M89YVB3Sh1xOxloevAvJqVJnxaM38iX0zRwhcMpL54gGM_9wAIjzdPf4z5Qo7zj59mbbcKbXKG8eV94hQNTNDhf1JXWMzBH7HQgAdRU49eBUJKeoUZZ-99pbQQs7qd5oIuk2YIyrmOv1tMaBJIZA8zC9tywASrb6YIPNlW33TgJi9KKzy2GzoTVZozTHF1JQFCDmzdz1OOkXRvSzHpADTq3rzUWJ5-hJ0w3UOaK5DLKICG6d_5xCiurnjPnwS2"/>
+</div>
+<div>
+<p class="font-bold text-slate-900 text-body-sm">David Chen</p>
+<p class="text-[10px] text-slate-500 font-semibold tracking-wider">MASTER ELECTRICIAN</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-secondary-container bg-secondary-container/20 px-2 py-0.5 rounded w-fit">
+<span class="material-symbols-outlined text-sm" data-icon="shield" style="font-variation-settings: 'FILL' 1;">shield</span>
+<span class="text-[11px] font-bold">VERIFIED</span>
+</div>
+</div>
+<div class="glass-panel p-4 rounded-xl shadow-lg transform rotate-2 hover:rotate-0 transition-transform duration-300">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of a female architect or project manager looking professional and capable, holding a digital tablet in a brightly lit modern office space with glass walls. Sharp focus and clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYShCR5B0AdbXRsdtWyIG9BP1dQMEhg4iBavWna020Y28oiFk2oP-v_Afkqppq-L2LT_nhTU_Aut7kPO0-OmC0BVPkvsi5pk98dywhzv2ZbOuct3M6SnLS-RXCHLR1jxp7Ma8yTjJ26UqMRx_uuWsLy5j_Z0ne0h-DNIofEec2g065_lc4pWbuJJ-JrUd2QVm7uqM4uAiZkKd4HDz4_C9DCcBWA4RYirHCKtXduOTWWZSAPgFQO3yBWC42HiruvCQ0ZAx9eQG2iFvG"/>
+</div>
+<div>
+<p class="font-bold text-slate-900 text-body-sm">Sarah Miller</p>
+<p class="text-[10px] text-slate-500 font-semibold tracking-wider">INTERIOR ARCHITECT</p>
+</div>
+</div>
+<div class="flex items-center gap-1 text-on-secondary-container bg-secondary-container/20 px-2 py-0.5 rounded w-fit">
+<span class="material-symbols-outlined text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[11px] font-bold">4.9 (124)</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="glass-panel p-6 rounded-xl shadow-2xl bg-white/80 border border-white/40">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4" data-icon="lock_open">lock_open</span>
+<h3 class="text-slate-900 font-h3 mb-2">Secure Escrow</h3>
+<p class="text-slate-600 text-body-sm">Payments are held securely and only released when the job is completed to your satisfaction.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Indicators Bento -->
+<section class="py-xl px-8 bg-white">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="p-8 rounded-xl border border-slate-100 bg-slate-50 flex items-start gap-4 hover:shadow-md transition-shadow">
+<div class="p-3 bg-secondary-container/30 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<h4 class="font-h3 text-slate-900 mb-1">Verified Professionals</h4>
+<p class="text-body-sm text-slate-600">Rigorous 5-step background and license checks for every provider.</p>
+</div>
+</div>
+<div class="p-8 rounded-xl border border-slate-100 bg-slate-50 flex items-start gap-4 hover:shadow-md transition-shadow">
+<div class="p-3 bg-secondary-container/30 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="payments">payments</span>
+</div>
+<div>
+<h4 class="font-h3 text-slate-900 mb-1">Secure Payments</h4>
+<p class="text-body-sm text-slate-600">Encrypted transactions with milestone-based payment release.</p>
+</div>
+</div>
+<div class="p-8 rounded-xl border border-slate-100 bg-slate-50 flex items-start gap-4 hover:shadow-md transition-shadow">
+<div class="p-3 bg-secondary-container/30 rounded-lg">
+<span class="material-symbols-outlined text-secondary" data-icon="support_agent">support_agent</span>
+</div>
+<div>
+<h4 class="font-h3 text-slate-900 mb-1">24/7 Support</h4>
+<p class="text-body-sm text-slate-600">Dedicated concierge team to help you navigate your project needs.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Popular Categories -->
+<section class="py-xl px-8 bg-surface">
+<div class="max-w-container-max mx-auto">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-h2 text-h2 text-on-surface mb-2">Popular Categories</h2>
+<p class="text-slate-500 font-body-md">Hire specialized experts for your specific project requirements.</p>
+</div>
+<a class="text-primary font-bold hover:underline flex items-center gap-2" href="#">
+                        View All Categories
+                        <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+<a class="group block p-6 bg-white border border-slate-200 rounded-xl hover:border-secondary hover:shadow-lg transition-all duration-300 text-center" href="#">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-secondary-container/20 transition-colors">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-secondary" data-icon="plumbing">plumbing</span>
+</div>
+<span class="font-bold text-slate-900 text-body-sm">Plumbing</span>
+</a>
+<a class="group block p-6 bg-white border border-slate-200 rounded-xl hover:border-secondary hover:shadow-lg transition-all duration-300 text-center" href="#">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-secondary-container/20 transition-colors">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-secondary" data-icon="bolt">bolt</span>
+</div>
+<span class="font-bold text-slate-900 text-body-sm">Electrical</span>
+</a>
+<a class="group block p-6 bg-white border border-slate-200 rounded-xl hover:border-secondary hover:shadow-lg transition-all duration-300 text-center" href="#">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-secondary-container/20 transition-colors">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-secondary" data-icon="ac_unit">ac_unit</span>
+</div>
+<span class="font-bold text-slate-900 text-body-sm">HVAC</span>
+</a>
+<a class="group block p-6 bg-white border border-slate-200 rounded-xl hover:border-secondary hover:shadow-lg transition-all duration-300 text-center" href="#">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-secondary-container/20 transition-colors">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-secondary" data-icon="format_paint">format_paint</span>
+</div>
+<span class="font-bold text-slate-900 text-body-sm">Painting</span>
+</a>
+<a class="group block p-6 bg-white border border-slate-200 rounded-xl hover:border-secondary hover:shadow-lg transition-all duration-300 text-center" href="#">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-secondary-container/20 transition-colors">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-secondary" data-icon="carpenter">carpenter</span>
+</div>
+<span class="font-bold text-slate-900 text-body-sm">Carpentry</span>
+</a>
+<a class="group block p-6 bg-white border border-slate-200 rounded-xl hover:border-secondary hover:shadow-lg transition-all duration-300 text-center" href="#">
+<div class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-secondary-container/20 transition-colors">
+<span class="material-symbols-outlined text-slate-600 group-hover:text-secondary" data-icon="handyman">handyman</span>
+</div>
+<span class="font-bold text-slate-900 text-body-sm">General</span>
+</a>
+</div>
+</div>
+</section>
+<!-- How It Works Section -->
+<section class="py-xl px-8 bg-white overflow-hidden">
+<div class="max-w-container-max mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-lg">
+<h2 class="font-h2 text-h1 text-slate-900 mb-4">How SkilledPro Works</h2>
+<p class="text-body-lg text-slate-600">A seamless experience designed for both homeowners and professional service providers.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-lg">
+<!-- For Clients -->
+<div class="p-lg rounded-2xl bg-slate-50 border border-slate-200 relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-container/10 rounded-bl-full -mr-8 -mt-8"></div>
+<div class="relative z-10">
+<span class="inline-block px-4 py-1 rounded-full bg-slate-200 text-slate-700 font-label-caps mb-6">FOR CLIENTS</span>
+<div class="space-y-8">
+<div class="flex gap-4">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">1</span>
+<div>
+<h4 class="font-h3 text-slate-900 mb-1">Post Your Project</h4>
+<p class="text-slate-600">Describe what you need, upload photos, and set your budget preferences.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">2</span>
+<div>
+<h4 class="font-h3 text-slate-900 mb-1">Review Bids</h4>
+<p class="text-slate-600">Compare verified profiles, reviews, and detailed quotes from top-rated pros.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold">3</span>
+<div>
+<h4 class="font-h3 text-slate-900 mb-1">Hire &amp; Pay Securely</h4>
+<p class="text-slate-600">Choose the best pro and pay through our protected escrow system.</p>
+</div>
+</div>
+</div>
+<button class="mt-8 px-6 py-3 border-2 border-primary text-primary rounded-lg font-button hover:bg-primary hover:text-white transition-all">Get Started</button>
+</div>
+</div>
+<!-- For Workers -->
+<div class="p-lg rounded-2xl bg-primary text-white border border-primary relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary/20 rounded-bl-full -mr-8 -mt-8"></div>
+<div class="relative z-10">
+<span class="inline-block px-4 py-1 rounded-full bg-white/10 text-white font-label-caps mb-6 border border-white/20">FOR PROS</span>
+<div class="space-y-8">
+<div class="flex gap-4">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center font-bold">1</span>
+<div>
+<h4 class="font-h3 text-white mb-1">Create Your Profile</h4>
+<p class="text-primary-fixed-dim">Complete our verification process and showcase your professional portfolio.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center font-bold">2</span>
+<div>
+<h4 class="font-h3 text-white mb-1">Bid on Local Jobs</h4>
+<p class="text-primary-fixed-dim">Receive notifications for projects that match your skills and location.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center font-bold">3</span>
+<div>
+<h4 class="font-h3 text-white mb-1">Grow Your Business</h4>
+<p class="text-primary-fixed-dim">Collect verified reviews and build a reputation for quality work.</p>
+</div>
+</div>
+</div>
+<button class="mt-8 px-6 py-3 bg-secondary text-white rounded-lg font-button hover:bg-on-secondary-fixed-variant transition-all">Become a Pro</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pro Highlight Section -->
+<section class="py-xl px-8 bg-white border-y border-slate-100">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-lg">
+<div class="flex-1">
+<div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="A professional HVAC technician in a grey uniform carefully installing a smart thermostat on a white wall in a modern living room. The lighting is soft and high-quality, emphasizing a professional and clean workspace. The aesthetic is bright, minimalist, and high-trust, consistent with professional service marketplace standards." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHlHBsrDRmDrJTDz4w8Cj6RmVuljDzGtubg6YqepFmylwYJtkPM1rA_NZf8uWVgSubBXkZdsVhI1dFVThMX4gTjGONWHztkdy6mI8e2YOxHMY7QmfRkEDGzhZI4zssLG-eEIJOx0mBRnlxFNIXeJ34in24lgPT9kEZmk8ybhKSjH24g945dz5Q5VKGms0b7sxcDRHh5PndU_JPweQSMPQNsV2coyhhVVzZKpYWZshMCeWzE9BZvdQ5oEKLcz6BdVfnEjZmqFUf7yvD"/>
+<div class="absolute bottom-6 left-6 glass-panel p-4 rounded-xl shadow-lg">
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-secondary" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-bold text-slate-900">Certified Professional</span>
+</div>
+<p class="text-slate-600 text-body-sm">Every pro undergoes 15+ background checks.</p>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-6">
+<h2 class="font-h2 text-h1 text-slate-900 leading-tight">Elite Talent, Verified for Your Peace of Mind.</h2>
+<p class="text-body-lg text-slate-600">
+                        At SkilledPro, we don't just list services; we curate expertise. Our rigorous vetting process ensures that every professional who enters your home or business is licensed, insured, and has a proven track record of excellence.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-slate-800 font-medium">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+                            Federal Criminal Background Checks
+                        </li>
+<li class="flex items-center gap-3 text-slate-800 font-medium">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+                            Professional License Verification
+                        </li>
+<li class="flex items-center gap-3 text-slate-800 font-medium">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+                            Insurance and Bond Validation
+                        </li>
+<li class="flex items-center gap-3 text-slate-800 font-medium">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle">check_circle</span>
+                            Client-Verified Performance Reviews
+                        </li>
+</ul>
+<button class="px-8 py-4 bg-primary text-white rounded-lg font-button hover:bg-slate-800 transition-all shadow-lg">
+                        Browse Professionals Now
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200 bg-slate-50 font-manrope text-xs tracking-wide">
+<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-start gap-12 max-w-container-max mx-auto">
+<div class="space-y-4 max-w-xs">
+<span class="font-bold text-slate-900 text-xl block">SkilledPro</span>
+<p class="text-slate-500 leading-relaxed">The premier marketplace for high-tier professional services. Connecting vetted experts with discerning clients since 2024.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer" data-icon="facebook">social_leaderboard</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer" data-icon="public">public</span>
+<span class="material-symbols-outlined text-slate-400 hover:text-primary cursor-pointer" data-icon="alternate_email">alternate_email</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+<div class="space-y-4">
+<p class="font-bold text-slate-900 uppercase tracking-widest text-[10px]">Marketplace</p>
+<nav class="flex flex-col gap-2">
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Browse Jobs</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Find Professionals</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Success Stories</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Pro Pricing</a>
+</nav>
+</div>
+<div class="space-y-4">
+<p class="font-bold text-slate-900 uppercase tracking-widest text-[10px]">Resources</p>
+<nav class="flex flex-col gap-2">
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Help Center</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Trust &amp; Safety</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Community Guidelines</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Developer API</a>
+</nav>
+</div>
+<div class="space-y-4">
+<p class="font-bold text-slate-900 uppercase tracking-widest text-[10px]">Company</p>
+<nav class="flex flex-col gap-2">
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">About SkilledPro</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Careers</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Press Room</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Contact</a>
+</nav>
+</div>
+</div>
+</div>
+<div class="w-full py-8 px-8 border-t border-slate-200/50 flex flex-col md:flex-row justify-between items-center gap-6 max-w-container-max mx-auto">
+<p class="text-slate-500">© 2024 SkilledPro Marketplace. Secure Escrow Enabled.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Trust &amp; Safety</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors" href="#">Help Center</a>
+</div>
+</div>
+</footer>
+</body></html>

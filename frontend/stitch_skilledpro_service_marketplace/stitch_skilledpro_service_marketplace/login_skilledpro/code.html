@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | SkilledPro Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#dfc38b",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-tertiary-fixed": "#261a00",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#525e7f",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#00714d",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#fddfa4",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-container": "#bca26c",
+                    "tertiary": "#312300",
+                    "inverse-surface": "#213145",
+                    "on-surface-variant": "#45464e",
+                    "on-primary-container": "#98a4c9",
+                    "surface": "#f8f9ff",
+                    "tertiary-container": "#4a380c",
+                    "on-primary-fixed": "#0d1a38",
+                    "primary-fixed": "#dae2ff",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#002113",
+                    "surface-container-high": "#dce9ff",
+                    "inverse-primary": "#bac6ec",
+                    "background": "#f8f9ff",
+                    "surface-container-low": "#eff4ff",
+                    "secondary-container": "#6cf8bb",
+                    "on-background": "#0b1c30",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed-dim": "#4edea3",
+                    "secondary-fixed": "#6ffbbe",
+                    "outline": "#75777e",
+                    "on-tertiary-fixed-variant": "#574417",
+                    "primary-fixed-dim": "#bac6ec",
+                    "on-primary-fixed-variant": "#3a4666",
+                    "secondary": "#006c49",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f8f9ff",
+                    "primary-container": "#2e3a59",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#c6c6ce",
+                    "primary": "#182442",
+                    "surface-container": "#e5eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "base": "8px",
+                    "container-max": "1280px",
+                    "lg": "48px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "button": ["Manrope"],
+                    "label-caps": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "h3": ["Manrope"],
+                    "display": ["Manrope"],
+                    "h2": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h3": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen flex flex-col">
+<!-- Top Navigation (Shell Invisible for Transactional Page) -->
+<!-- As per instructions, Navigation Shell is suppressed for Transactional pages like Login -->
+<!-- Main Content Area -->
+<main class="flex-grow relative flex items-center justify-center p-md">
+<!-- Background with Image and Overlay -->
+<div class="absolute inset-0 z-0">
+<img alt="Professional Workspace" class="w-full h-full object-cover" data-alt="A sophisticated and modern architectural office space featuring clean lines, glass partitions, and minimalist designer furniture. The lighting is bright and airy, reflecting a professional high-tier corporate environment. The overall aesthetic uses a palette of soft whites and deep slates to convey a sense of stability and institutional trust, perfectly aligned with a professional marketplace identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjpj2BrY8bUJ5dc0T3vMhDXXItFPsPHkv8BURmBEL4MWRwq73cYrHM-1FHj_k6ZA1YHFtzY8gZ5643DBmwTbp3CkA8WsYYJ2REDKlQqht-2kuiXm0EPRSoSiHs9gVV84tvtghyDaxadlmjEYtnena7_3GfpxOsPKv-neLhoVsD91Toily_9mABA3IftYgrhfW5JtDqXKUpXgpNqagnXmDE6a37lojGAyBWuH__I8KPu37dbK0nRbwHgXoQvaj5sb9eXFupp94ToLKB"/>
+<div class="absolute inset-0 bg-primary/40 backdrop-blur-[2px]"></div>
+</div>
+<!-- Login Card -->
+<div class="relative z-10 w-full max-w-[440px]">
+<div class="glass-panel rounded-xl shadow-2xl p-lg flex flex-col gap-md">
+<!-- Brand Header -->
+<div class="text-center">
+<h1 class="font-display text-primary mb-xs">SkilledPro</h1>
+<p class="font-body-sm text-on-surface-variant">Access your professional dashboard</p>
+</div>
+<!-- Social Login Cluster -->
+<div class="flex flex-col gap-sm">
+<button class="w-full h-12 flex items-center justify-center gap-sm bg-white border border-outline-variant rounded-lg hover:bg-surface-container-low transition-colors duration-200">
+<img alt="Google Logo" class="w-5 h-5" data-alt="The official Google brand logo, a clean and minimalist multicolored 'G' symbol on a white circular background. The icon represents a modern, universally recognized digital identity for secure social authentication and seamless user login integration." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiQ6LSmbzOUid6z-kaHmeFpXd2tuKJervmaugfK8BHHol3S3b-zypSUIVMqTiTZ7Zsb514u5xHGrD8Gmwss2eLfIwLGNMsnXcyO-pvraMAbWHKapiN_Rl_2wLTNO5l2JVq_osHSgCXeV73bJEaVpjMSF2wUntEt6RzPatiadozz8lOLfOGCGziBxuCKAngtNJB8qoETDFCVeAe8dfmaMdp-guFHCpsAG5iEsUb1AGoALgorO6yiHJN-vwNkFnFuMBWd1726exU3Y2n"/>
+<span class="font-button text-on-surface">Continue with Google</span>
+</button>
+<button class="w-full h-12 flex items-center justify-center gap-sm bg-[#0077b5] text-white rounded-lg hover:opacity-90 transition-opacity duration-200">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.761 0 5-2.239 5-5v-14c0-2.761-2.239-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
+<span class="font-button">Continue with LinkedIn</span>
+</button>
+</div>
+<!-- Divider -->
+<div class="flex items-center gap-sm">
+<div class="h-[1px] flex-grow bg-outline-variant"></div>
+<span class="font-label-caps text-on-surface-variant">OR EMAIL</span>
+<div class="h-[1px] flex-grow bg-outline-variant"></div>
+</div>
+<!-- Form -->
+<form action="#" class="flex flex-col gap-md">
+<div class="flex flex-col gap-xs">
+<label class="font-label-caps text-on-surface" for="email">EMAIL ADDRESS</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" data-icon="mail">mail</span>
+<input class="w-full pl-[44px] h-12 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md" id="email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-on-surface" for="password">PASSWORD</label>
+<a class="text-body-sm text-primary font-semibold hover:underline" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]" data-icon="lock">lock</span>
+<input class="w-full pl-[44px] h-12 bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md" id="password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full h-12 bg-primary text-on-primary font-button rounded-lg shadow-md hover:opacity-90 active:scale-[0.98] transition-all" type="submit">
+                        Sign In to SkilledPro
+                    </button>
+</form>
+<!-- Create Account Link -->
+<div class="text-center pt-xs">
+<p class="text-body-sm text-on-surface-variant">
+                        Don't have an account? 
+                        <a class="text-primary font-bold hover:underline" href="#">Create an account</a>
+</p>
+</div>
+<!-- Trust Indicator -->
+<div class="mt-sm pt-md border-t border-white/30 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-on-secondary-container text-[18px]" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-caps text-on-secondary-container">SECURE ENTERPRISE LOGIN</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer (Using JSON Structure) -->
+<footer class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 z-10">
+<div class="flex flex-col md:flex-row items-center gap-md">
+<span class="font-bold text-slate-900 dark:text-white font-manrope">SkilledPro</span>
+<div class="flex gap-md">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors duration-200 font-manrope text-xs tracking-wide" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors duration-200 font-manrope text-xs tracking-wide" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors duration-200 font-manrope text-xs tracking-wide" href="#">Trust &amp; Safety</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 transition-colors duration-200 font-manrope text-xs tracking-wide" href="#">Help Center</a>
+</div>
+</div>
+<p class="text-slate-600 dark:text-slate-400 font-manrope text-xs tracking-wide">
+            © 2024 SkilledPro Marketplace. Secure Escrow Enabled.
+        </p>
+</footer>
+</body></html>

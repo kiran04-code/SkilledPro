@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SkilledPro Worker Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-surface-variant": "#45464e",
+                    "surface-container": "#e5eeff",
+                    "primary": "#2E3A59",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-container": "#10B981",
+                    "on-secondary-container": "#065f46",
+                    "on-primary-container": "#98a4c9",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#2e3a59",
+                    "tertiary-container": "#ecfdf5",
+                    "secondary-container": "#d1fae5",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary": "#10B981",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary": "#065f46",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002113",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-error-container": "#93000a",
+                    "outline": "#75777e",
+                    "background": "#f8f9ff",
+                    "outline-variant": "#c6c6ce",
+                    "on-tertiary-fixed-variant": "#065f46",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#064e3b",
+                    "primary-fixed": "#dae2ff",
+                    "on-surface": "#0b1c30",
+                    "inverse-primary": "#bac6ec",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3a4666",
+                    "on-primary-fixed": "#0d1a38",
+                    "surface-tint": "#2E3A59",
+                    "primary-fixed-dim": "#bac6ec",
+                    "inverse-surface": "#213145"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "xl": "64px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Manrope"],
+                    "h2": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "button": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "h3": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "button": ["16px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-card {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-background min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 border-b bg-white/80 backdrop-blur-md border-slate-200 shadow-xl shadow-slate-900/5">
+<div class="flex justify-between items-center px-6 py-3 w-full max-w-[1280px] mx-auto">
+<div class="text-2xl font-black text-primary tracking-tighter font-h2">ProMarket</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary border-b-2 border-primary pb-1 font-button text-button" href="#">Find Work</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-button text-button" href="#">Hire Talent</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-button text-button" href="#">Messages</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-button text-button" href="#">Workspace</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50/50 rounded-lg transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50/50 rounded-lg transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-slate-100 shadow-sm">
+<img alt="User profile" data-alt="Professional headshot of a skilled male contractor in his late 30s with a confident expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCprtqR4cq-xuu--TfLcxgw3v1orzhL8U-76vhGePwZ4dtu0j3gUwKu8pH1FOUlq96QwwtyXb3lE5aYF_juluzPD6ifjnl6KqpbJkvyacEcOqK9VbzTb7Xguq5DcQNRw1j3RJHfOlmp79h9VACqCfVbVOA7_GSwjWakiz0-yDYMYmVVHQAcVFxJgf4uNNf9htrD7n6oUFdLhc7VNKviI6RUH0J0gB9LaVeSbMAJBsdez3Iv0cg_Sjjtk806EkM5nGG-4iUbsNehKe4h"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 border-r border-slate-200 bg-white shadow-sm z-40 pt-20 pb-6 flex flex-col">
+<div class="px-6 mb-8">
+<div class="flex items-center gap-3 mb-2">
+<div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="account_circle">account_circle</span>
+</div>
+<div>
+<p class="font-h3 text-sm text-primary font-bold">Alex Rivers</p>
+<p class="text-xs text-slate-500">Expert Contractor</p>
+</div>
+</div>
+<button class="w-full mt-4 bg-primary text-white py-3 rounded-xl font-button text-button shadow-lg shadow-primary/20 active:scale-95 transition-all">
+                Post a Project
+            </button>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="bg-slate-50 text-primary border-r-4 border-primary flex items-center gap-3 px-6 py-3 font-semibold text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-slate-600 flex items-center gap-3 px-6 py-3 hover:bg-slate-50 transition-all font-semibold text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="distance">distance</span>
+                Map View
+            </a>
+<a class="text-slate-600 flex items-center gap-3 px-6 py-3 hover:bg-slate-50 transition-all font-semibold text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+                Project List
+            </a>
+<a class="text-slate-600 flex items-center gap-3 px-6 py-3 hover:bg-slate-50 transition-all font-semibold text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet">account_balance_wallet</span>
+                Wallet
+            </a>
+<a class="text-slate-600 flex items-center gap-3 px-6 py-3 hover:bg-slate-50 transition-all font-semibold text-sm" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-6 space-y-1 mt-auto border-t pt-4">
+<a class="text-slate-600 flex items-center gap-3 px-4 py-2 hover:bg-slate-50 transition-all text-sm font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="support">support</span>
+                Help Center
+            </a>
+<a class="text-slate-600 flex items-center gap-3 px-4 py-2 hover:bg-slate-50 transition-all text-sm font-semibold" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Logout
+            </a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 pt-24 px-8 pb-12">
+<div class="max-w-[1280px] mx-auto">
+<!-- Alert Banner -->
+<div class="mb-lg bg-secondary-container/30 border border-secondary/20 p-sm rounded-xl flex items-center gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="verified_user">verified_user</span>
+<div class="flex-1">
+<p class="text-on-secondary-container font-semibold text-body-sm">Identity Verification Required</p>
+<p class="text-on-secondary-container/80 text-xs">Verify your profile to unlock high-budget enterprise projects.</p>
+</div>
+<button class="bg-secondary text-white px-4 py-2 rounded-lg text-body-sm font-button hover:bg-secondary/90 transition-all">Verify Now</button>
+</div>
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="font-h1 text-h1 text-primary">Worker Dashboard</h1>
+<p class="text-body-lg text-on-surface-variant">Welcome back, Alex. Here's your performance summary.</p>
+</div>
+<div class="text-right">
+<p class="text-label-caps text-on-primary-container mb-1 uppercase">LAST UPDATED</p>
+<p class="font-semibold text-primary">Just now</p>
+</div>
+</div>
+<!-- Bento Grid Stats & Profile -->
+<div class="grid grid-cols-12 gap-gutter mb-lg">
+<!-- Stats Cards -->
+<div class="col-span-8 grid grid-cols-3 gap-gutter">
+<div class="glass-card p-6 rounded-xl shadow-lg shadow-slate-900/5">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="task_alt">task_alt</span>
+<span class="text-xs font-bold text-secondary bg-secondary/10 px-2 py-1 rounded">+12%</span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-semibold">Jobs Completed</p>
+<h3 class="text-h2 font-h2 text-primary mt-1">142</h3>
+</div>
+<div class="glass-card p-6 rounded-xl shadow-lg shadow-slate-900/5">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-amber-500" data-icon="star">star</span>
+<span class="text-xs font-bold text-amber-500 bg-amber-500/10 px-2 py-1 rounded">Top Rated</span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-semibold">Avg Rating</p>
+<h3 class="text-h2 font-h2 text-primary mt-1">4.9</h3>
+</div>
+<div class="glass-card p-6 rounded-xl shadow-lg shadow-slate-900/5">
+<div class="flex items-center justify-between mb-4">
+<span class="material-symbols-outlined text-primary" data-icon="payments">payments</span>
+<span class="text-xs font-bold text-primary bg-slate-50 px-2 py-1 rounded">Active</span>
+</div>
+<p class="text-on-surface-variant text-body-sm font-semibold">Escrow Earnings</p>
+<h3 class="text-h2 font-h2 text-primary mt-1">$4,820</h3>
+</div>
+</div>
+<!-- Profile Strength -->
+<div class="col-span-4 glass-card p-6 rounded-xl border-l-4 border-l-secondary shadow-lg shadow-slate-900/5">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-h3 text-sm font-bold text-primary">Profile Strength</h4>
+<span class="text-secondary font-bold text-sm">85%</span>
+</div>
+<div class="h-3 w-full bg-slate-100 rounded-full flex gap-1 mb-4 overflow-hidden">
+<div class="h-full w-[25%] bg-secondary rounded-l-full"></div>
+<div class="h-full w-[25%] bg-secondary"></div>
+<div class="h-full w-[25%] bg-secondary"></div>
+<div class="h-full w-[10%] bg-secondary"></div>
+<div class="h-full w-[15%] bg-slate-200"></div>
+</div>
+<div class="bg-secondary/5 border border-secondary/10 p-3 rounded-lg flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-lg" data-icon="add_a_photo">add_a_photo</span>
+<p class="text-xs text-on-secondary-container font-semibold">Add a site photo for +10% boost</p>
+</div>
+</div>
+</div>
+<!-- Main Tabs Content -->
+<div class="glass-card rounded-2xl overflow-hidden border border-slate-200 shadow-2xl shadow-slate-900/5">
+<div class="flex border-b border-slate-100 px-6">
+<button class="px-6 py-4 text-primary font-bold border-b-2 border-primary text-sm">Matching Jobs</button>
+<button class="px-6 py-4 text-slate-400 font-semibold text-sm hover:text-primary transition-colors">My Bids (12)</button>
+<button class="px-6 py-4 text-slate-400 font-semibold text-sm hover:text-primary transition-colors">Invitations (3)</button>
+<button class="px-6 py-4 text-slate-400 font-semibold text-sm hover:text-primary transition-colors">Drafts</button>
+</div>
+<div class="p-6">
+<!-- Filters -->
+<div class="flex gap-4 mb-6">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all" placeholder="Search by skills or title..." type="text"/>
+</div>
+<button class="px-4 py-2 border border-slate-200 rounded-lg text-slate-600 font-semibold text-sm flex items-center gap-2 hover:bg-slate-50">
+<span class="material-symbols-outlined text-sm" data-icon="filter_list">filter_list</span>
+                            Filter
+                        </button>
+</div>
+<!-- Job List -->
+<div class="space-y-4">
+<!-- Job Card 1 -->
+<div class="group p-5 border border-slate-100 rounded-xl hover:border-primary/20 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-h3 text-lg font-bold text-primary">Luxury Kitchen Remodel - Electrical Phase</h4>
+<span class="bg-secondary/10 text-secondary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">98% Match</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-1">Licensed electrician needed for high-end residential kitchen upgrade. Must handle smart lighting integration and sub-panel wiring...</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold text-lg">$2,500 - $4,000</p>
+<p class="text-xs text-slate-400">Posted 2h ago</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1.5 text-slate-500 text-sm">
+<span class="material-symbols-outlined text-base" data-icon="location_on">location_on</span>
+<span>Lincoln Park, Chicago (3.2 miles)</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 text-sm">
+<span class="material-symbols-outlined text-base" data-icon="history">history</span>
+<span>Est. duration: 5 days</span>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-slate-100 rounded text-[11px] font-bold text-slate-600">Electrical</span>
+<span class="px-2 py-1 bg-slate-100 rounded text-[11px] font-bold text-slate-600">Smart Home</span>
+</div>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="group p-5 border border-slate-100 rounded-xl hover:border-primary/20 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-h3 text-lg font-bold text-primary">Commercial HVAC Maintenance - Retail Complex</h4>
+<span class="bg-amber-500/10 text-amber-600 text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">82% Match</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-1">Routine maintenance and coil cleaning for a 5-unit retail strip. Requires EPA certification and commercial insurance...</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold text-lg">$850 Fixed</p>
+<p class="text-xs text-slate-400">Posted 5h ago</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1.5 text-slate-500 text-sm">
+<span class="material-symbols-outlined text-base" data-icon="location_on">location_on</span>
+<span>West Loop, Chicago (0.8 miles)</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 text-sm">
+<span class="material-symbols-outlined text-base" data-icon="history">history</span>
+<span>Est. duration: 1 day</span>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-slate-100 rounded text-[11px] font-bold text-slate-600">HVAC</span>
+<span class="px-2 py-1 bg-slate-100 rounded text-[11px] font-bold text-slate-600">Commercial</span>
+</div>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="group p-5 border border-slate-100 rounded-xl hover:border-primary/20 hover:bg-primary/5 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-3">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<h4 class="font-h3 text-lg font-bold text-primary">Custom Built-in Bookshelf Installation</h4>
+<span class="bg-secondary/10 text-secondary text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">95% Match</span>
+</div>
+<p class="text-on-surface-variant text-sm line-clamp-1">Finish carpentry specialist needed for floor-to-ceiling walnut shelving unit. Materials on site, assembly required...</p>
+</div>
+<div class="text-right">
+<p class="text-primary font-bold text-lg">$1,200 - $1,800</p>
+<p class="text-xs text-slate-400">Posted 8h ago</p>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-1.5 text-slate-500 text-sm">
+<span class="material-symbols-outlined text-base" data-icon="location_on">location_on</span>
+<span>River North, Chicago (1.5 miles)</span>
+</div>
+<div class="flex items-center gap-1.5 text-slate-500 text-sm">
+<span class="material-symbols-outlined text-base" data-icon="history">history</span>
+<span>Est. duration: 3 days</span>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-slate-100 rounded text-[11px] font-bold text-slate-600">Carpentry</span>
+<span class="px-2 py-1 bg-slate-100 rounded text-[11px] font-bold text-slate-600">Interior Design</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8 text-center">
+<button class="px-8 py-3 bg-white border border-slate-200 rounded-xl text-primary font-bold hover:bg-slate-50 transition-all">View All Matching Jobs</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full bg-white border-t border-slate-100 px-6 py-3 flex justify-between items-center z-50">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="text-[10px] font-bold">Find</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="text-[10px] font-bold">Chat</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</nav>
+</body></html>

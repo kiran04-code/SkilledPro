@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ProMarket Workspace | Project Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#4edea3",
+                    "on-surface-variant": "#45464e",
+                    "surface-container": "#e5eeff",
+                    "primary": "#2E3A59",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-container": "#e59300",
+                    "on-secondary-container": "#065f46",
+                    "on-primary-container": "#98a4c9",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#2e3a59",
+                    "tertiary-container": "#553300",
+                    "secondary-container": "#d1fae5",
+                    "tertiary-fixed": "#ffddb8",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary": "#10B981",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary": "#372000",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#002113",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-error-container": "#93000a",
+                    "outline": "#75777e",
+                    "background": "#f8f9ff",
+                    "outline-variant": "#c6c6ce",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary-fixed": "#dae2ff",
+                    "on-surface": "#0b1c30",
+                    "inverse-primary": "#bac6ec",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3a4666",
+                    "on-primary-fixed": "#0d1a38",
+                    "surface-tint": "#2E3A59",
+                    "primary-fixed-dim": "#bac6ec",
+                    "inverse-surface": "#213145"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "xl": "64px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Manrope"],
+                    "h2": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "button": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "h3": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "button": ["16px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 1);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+<!-- TopNavBar Component -->
+<header class="fixed top-0 w-full z-50 border-b bg-white/80 backdrop-blur-md border-slate-200 shadow-xl shadow-slate-500/10">
+<nav class="flex justify-between items-center px-6 py-3 w-full max-w-[1280px] mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-primary tracking-tighter font-h1">ProMarket</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-500 hover:text-primary transition-colors font-label-caps" href="#">Find Work</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-label-caps" href="#">Hire Talent</a>
+<a class="text-slate-500 hover:text-primary transition-colors font-label-caps" href="#">Messages</a>
+<a class="text-primary border-b-2 border-primary pb-1 font-label-caps" href="#">Workspace</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-50/50 rounded-lg transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-50/50 rounded-lg transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined text-primary">help</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest border border-outline-variant overflow-hidden">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6Zib-9bWp_55g2m0A6jQ6UqTX2DSAY5KmT8-9CKCNhXqkyakmXagOsdN9Uz24CGepRVc7mmp04YrmUuXtqLC3aVx_m1X27uc56imFLhW3nuSDtofJ9OD8_gSNpPXITzqNLOznGE7lghxLN3hk2ht7mlTY5XDvLyUHnOuobXNmVogIek5aqMn_U2OwqXTBRX7tWs-dgIOTXkr02HN-ZRSHl3DJ8pk2heRcQqTHNow4fDoAGsmGGIqBxK0_W0PYOnHAriqGuvNnlFgo"/>
+</div>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-12 px-6 max-w-[1280px] mx-auto grid grid-cols-12 gap-gutter h-[calc(100vh-80px)]">
+<!-- Main Chat Area -->
+<section class="col-span-12 lg:col-span-8 flex flex-col glass-panel rounded-xl shadow-slate-500/10 border-slate-200 overflow-hidden">
+<!-- Chat Header -->
+<div class="px-6 py-4 border-b border-slate-200 flex justify-between items-center bg-white">
+<div class="flex items-center gap-3">
+<div class="relative">
+<img alt="Alex Rivers" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1ljU8vHZru7POl0xymGCMhC5Vxk4Bv4h4yowhzGjcpy_YmUBbaqIfsv5B6QOnewhxWZJ7fSwzdfijx2JpcVWhXc2X_RPgHcqeOHhAzlvW5F8ihoyz5Bdzf1mLjh8qI2CIjKAhSfQFGB0NxhVAormaxe1DBCrh-ooNBPkHwgAiY5lauTT36pik-t1Cn0riUWDa8sUsYulGxr82KKKfZpB8tFS6Ri3WdIUhVjA4Rrq15teaXh71CrV0b5n2LCTCrCt28Oa8roqTSX2m"/>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-secondary rounded-full border-2 border-white"></div>
+</div>
+<div>
+<h3 class="font-h3 text-body-md text-on-background">Alex Rivers</h3>
+<p class="text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Online
+                    </p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-lg">
+<span class="material-symbols-outlined">videocam</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-lg">
+<span class="material-symbols-outlined">call</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-lg">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages Stream -->
+<div class="flex-1 overflow-y-auto p-6 space-y-6 bg-slate-50/30">
+<!-- Message Recieved -->
+<div class="flex gap-4 max-w-[80%]">
+<div class="flex-shrink-0">
+<img alt="Alex Rivers" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBknfkRaIvvEagZcyuF_8DqmbxGAA3zCM4r20KWawYiqY6HDThEKIEbkyIKabKdcfe2q5TflQ1K0VFX_Cp9G_iRCjm9DJwxXd6Y8gMNbKhZhC8KSVQ_GtuJThWUR86NXzhIAQLa6D12jgq5caJlPuZbcxibZ_zhyVGl3doaUsB3V00Os1-IrlyUHlTwqtXjVbhCUvLl-FGQGgnheNnfuWC1ldGKDKKPMsALM12VkOYaxHFEMt7ydRArEgGjavMh2S3evrESlnt4VsA9"/>
+</div>
+<div>
+<div class="bg-white border border-slate-200 p-4 rounded-xl rounded-tl-none shadow-sm text-body-md">
+                        Hi! I've finished the initial wireframes for the dashboard. Could you please take a look at the attached PDF and let me know if the layout aligns with your vision?
+                    </div>
+<span class="text-[10px] text-slate-400 mt-1 block">10:24 AM</span>
+</div>
+</div>
+<!-- System Notice -->
+<div class="flex justify-center">
+<span class="bg-surface-container text-on-secondary-container px-3 py-1 rounded-full text-[12px] font-semibold">
+                    Milestone 1: Design Phase Started
+                </span>
+</div>
+<!-- Message Sent -->
+<div class="flex gap-4 max-w-[80%] ml-auto flex-row-reverse">
+<div class="flex-shrink-0">
+<img alt="You" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARSNiHDk8IEJhzzUFM3Yua3B-cwX2edgS6z3jDnzUVMSd8AhzmWI2hC8foNOIopgMMEBjgCYgLdTTvmNR3gaODW-jZpOtvGqyL1rrZMx-gfcnvv_vtxXzotsw4XJvtDWn7wmbI8YPYNwaJTikfGvdw7O6bqUEjlUfx0ES6lYsVvUCq04wJ95WIcsDLS-T4IHZaoKW7DXOe3i2wHdmj_zUSlvPI3uWqSrTjBbEep-s6MeEdNCmtJSjmRncIlbHKhy_8M-S_iaf97DOQ"/>
+</div>
+<div>
+<div class="bg-primary text-on-primary p-4 rounded-xl rounded-tr-none shadow-sm text-body-md">
+                        Just reviewed them. They look fantastic! I especially like the bento grid approach for the analytics section. Let's move forward with these.
+                    </div>
+<span class="text-[10px] text-slate-400 mt-1 block text-right">10:45 AM</span>
+</div>
+</div>
+<!-- Attachment Message -->
+<div class="flex gap-4 max-w-[80%]">
+<div class="flex-shrink-0">
+<img alt="Alex Rivers" class="w-8 h-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUxXZ-KrXa63Opmy5kJOaT3ZGPXg1oZp4tJFvypQasUJVvrkYfWSR6p5DezaTo_80T82Bdujtyq1gaHDo-zm-6Ikdo2XnP_A-BP8MCpCNSyy3w3fGnOQmX-Za7-1wpPjNENzbLMRq_HllFKlYsAhS6F_eDlYIBWrl1gKS_8chUsMrKewUj7o0hpYJHMhW9B5i40UbnU4B_AC8A122Y0XyaE03sm_GOGBZqz6P_kQ4-b3St17QojrvheaVgTRPirRJejBrif6BSW_sr"/>
+</div>
+<div class="space-y-2">
+<div class="bg-white border border-slate-200 p-3 rounded-xl rounded-tl-none shadow-sm">
+<div class="flex items-center gap-3 border border-slate-100 p-2 rounded bg-slate-50">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+<div class="flex-1">
+<p class="text-body-sm font-semibold">Dashboard_v1_Final.pdf</p>
+<p class="text-[11px] text-slate-500">4.2 MB</p>
+</div>
+<button class="text-primary hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<span class="text-[10px] text-slate-400 mt-1 block">11:02 AM</span>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-6 bg-white border-t border-slate-200">
+<div class="flex items-end gap-3 bg-slate-50 border border-slate-200 rounded-xl p-3 focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<button class="p-1 text-slate-400 hover:text-primary">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-body-md p-1 min-h-[24px] max-h-[120px] resize-none" placeholder="Type your message here..."></textarea>
+<button class="bg-primary text-on-primary p-2 rounded-lg hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Sidebar Project Details -->
+<aside class="col-span-12 lg:col-span-4 space-y-gutter overflow-y-auto">
+<!-- Project Status Card -->
+<div class="glass-panel rounded-xl p-6 shadow-sm border-slate-200">
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="text-on-secondary-container bg-secondary-container px-3 py-1 rounded-full text-label-caps inline-block mb-2">In Progress</span>
+<h2 class="font-h3 text-primary">E-Commerce Redesign</h2>
+</div>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">edit</span>
+</button>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between text-body-sm">
+<span class="text-slate-500">Total Budget</span>
+<span class="font-bold text-primary">$4,500.00</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-slate-500">Released</span>
+<span class="font-bold text-secondary">$1,200.00</span>
+</div>
+<div class="flex justify-between text-body-sm">
+<span class="text-slate-500">In Escrow</span>
+<span class="font-bold text-amber-600">$3,300.00</span>
+</div>
+<!-- Progress Bar -->
+<div class="pt-2">
+<div class="flex justify-between text-label-caps mb-2">
+<span class="text-slate-500">Completion</span>
+<span class="text-primary">35%</span>
+</div>
+<div class="h-2 w-full bg-slate-100 rounded-full overflow-hidden flex gap-1">
+<div class="h-full bg-secondary w-1/3 rounded-full"></div>
+<div class="h-full bg-slate-200 w-2/3 rounded-full"></div>
+</div>
+</div>
+</div>
+<div class="mt-8 space-y-3">
+<button class="w-full py-3 bg-primary text-on-primary rounded-lg font-button active:scale-[0.98] transition-transform shadow-lg shadow-primary/20">
+                    Release Payment
+                </button>
+<button class="w-full py-3 bg-white border border-slate-200 text-on-background rounded-lg font-button hover:bg-slate-50 transition-colors">
+                    Mark Completed
+                </button>
+<button class="w-full text-center py-2 text-primary font-label-caps hover:underline">
+                    Request Price Revision
+                </button>
+</div>
+</div>
+<!-- Project Details Bento -->
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-panel p-4 rounded-xl border-slate-200 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">event</span>
+<span class="text-label-caps text-slate-500">Deadline</span>
+<span class="text-body-sm font-bold">Oct 24, 2024</span>
+</div>
+<div class="glass-panel p-4 rounded-xl border-slate-200 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary mb-2">history</span>
+<span class="text-label-caps text-slate-500">Total Hours</span>
+<span class="text-body-sm font-bold">142 hrs</span>
+</div>
+</div>
+<!-- Documents Card -->
+<div class="glass-panel rounded-xl p-6 border-slate-200">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-h3 text-body-md">Shared Files</h4>
+<span class="text-primary text-body-sm font-semibold cursor-pointer hover:underline">View All</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="w-10 h-10 bg-slate-50 rounded flex items-center justify-center group-hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm font-semibold truncate">Project_Brief_v2.docx</p>
+<p class="text-[11px] text-slate-500">Oct 12 • 1.2 MB</p>
+</div>
+</div>
+<div class="flex items-center gap-3 group cursor-pointer">
+<div class="w-10 h-10 bg-slate-50 rounded flex items-center justify-center group-hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined text-primary">image</span>
+</div>
+<div class="flex-1">
+<p class="text-body-sm font-semibold truncate">Brand_Assets.zip</p>
+<p class="text-[11px] text-slate-500">Oct 14 • 45 MB</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Price Revision Modal (Simulation Layer) -->
+<div class="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/40 backdrop-blur-sm hidden">
+<div class="bg-white rounded-xl shadow-2xl w-full max-w-md p-8 border border-slate-200">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-h3 text-primary">Request Price Revision</h3>
+<button class="text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-6">
+<div>
+<label class="block text-label-caps text-slate-500 mb-2">New Proposed Amount</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 font-bold text-slate-400">$</span>
+<input class="w-full pl-8 pr-4 py-3 border border-slate-200 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none" type="number" value="4800"/>
+</div>
+</div>
+<div>
+<label class="block text-label-caps text-slate-500 mb-2">Reason for Revision</label>
+<textarea class="w-full p-4 border border-slate-200 rounded-lg h-32 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none resize-none" placeholder="Explain the changes in scope or requirements..."></textarea>
+</div>
+<div class="flex gap-3">
+<button class="flex-1 py-3 bg-white border border-slate-200 text-on-background rounded-lg font-button hover:bg-slate-50">Cancel</button>
+<button class="flex-1 py-3 bg-primary text-on-primary rounded-lg font-button shadow-lg shadow-primary/20">Send Proposal</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

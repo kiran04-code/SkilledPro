@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#d3e4fe",
+                    "on-background": "#0b1c30",
+                    "surface": "#f8f9ff",
+                    "secondary-fixed-dim": "#10B981", // Emerald green for success
+                    "on-surface-variant": "#45464e",
+                    "surface-container": "#e5eeff",
+                    "primary": "#2E3A59", // Deep slate blue
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#eff4ff",
+                    "on-tertiary-container": "#e59300",
+                    "on-secondary-container": "#065F46", // Dark emerald for contrast
+                    "on-primary-container": "#98a4c9",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "on-tertiary": "#ffffff",
+                    "primary-container": "#2E3A59", // Updated primary action color
+                    "tertiary-container": "#553300",
+                    "secondary-container": "#D1FAE5", // Light emerald container
+                    "tertiary-fixed": "#ffddb8",
+                    "on-primary": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "secondary": "#10B981", // Emerald green
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "tertiary": "#372000",
+                    "error": "#ba1a1a",
+                    "on-secondary-fixed": "#064E3B",
+                    "on-secondary-fixed-variant": "#065F46",
+                    "secondary-fixed": "#10B981",
+                    "on-error-container": "#93000a",
+                    "outline": "#75777e",
+                    "background": "#f8f9ff",
+                    "outline-variant": "#c6c6ce",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "surface-bright": "#f8f9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "primary-fixed": "#dae2ff",
+                    "on-surface": "#0b1c30",
+                    "inverse-primary": "#bac6ec",
+                    "surface-dim": "#cbdbf5",
+                    "surface-container-high": "#dce9ff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed-variant": "#3a4666",
+                    "on-primary-fixed": "#0d1a38",
+                    "surface-tint": "#2E3A59",
+                    "primary-fixed-dim": "#bac6ec",
+                    "inverse-surface": "#213145"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "16px",
+                    "md": "24px",
+                    "xs": "8px",
+                    "lg": "40px",
+                    "gutter": "24px",
+                    "container-max": "1280px",
+                    "xl": "64px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "label-caps": ["Manrope"],
+                    "h2": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "button": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "h3": ["Manrope"]
+            },
+            "fontSize": {
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                    "button": ["16px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body-md text-on-background">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 w-full z-50 glass-header shadow-xl shadow-slate-900/10">
+<div class="flex justify-between items-center px-6 py-3 w-full max-w-[1280px] mx-auto font-manrope antialiased tracking-tight">
+<div class="text-2xl font-black text-primary tracking-tighter">ProMarket</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Find Work</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Hire Talent</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Messages</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Workspace</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-lg hover:bg-slate-50/50 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500">notifications</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-slate-50/50 transition-all active:scale-95 duration-200">
+<span class="material-symbols-outlined text-slate-500">help</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-surface-container-highest">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional studio headshot of a person with a friendly expression, set against a clean, light-colored background. The lighting is soft and even, highlighting features clearly to project reliability and expertise. The overall aesthetic is polished, modern, and high-trust, consistent with a professional marketplace platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpMtD_3OaAKzyO1z5BVTX_zfuVvnaUDZ7fTYhN5NivJuCx-TGXCxSNn2mKShwoV4ESwuELGH8OGc9u2DnZkksi9-1lib61qxQ5Z6NujNm-RlhcO6XsB-j29LK_Rto1iaeqABaYxllFAJAXZDnZBX9biNINaH-juQSI8vsSc9y3rIQ8Cj9SjNFFlPwgMtIP22qsNDnY26UcUlvmrO8CQx3dPXmnuJWhr7Oxlui8BAQpdxmTmTcJkvd0Oxz7qRfeT6qAv8NVasQftIRp"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-20 max-w-[1280px] mx-auto px-6">
+<!-- Profile Header Section -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-lg">
+<!-- Left: Bio & Stats -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="flex flex-col md:flex-row gap-md items-start">
+<div class="relative">
+<img class="w-32 h-32 md:w-40 md:h-40 rounded-xl object-cover border border-outline-variant" data-alt="A high-quality professional portrait of a skilled contractor in their late 30s wearing professional work attire. They are standing in a modern, well-lit architectural space that suggests high-end residential or commercial projects. The lighting is crisp and authoritative, emphasizing a persona of mastery and meticulous attention to detail." src="https://lh3.googleusercontent.com/aida-public/AB6AXuASkNohP-QkOzVHwHt099S4lWhnObShzO8PpiQ4MVHtk95ZZAopq_UAJruzhtRxM45_AU9IXP-JivJoSssxROrorBBU3QSF59-1p0rv-lfx3pSMPQzPwlw7vDYVA8FyWnlSMZ88NeXB1qkqYAFCQ_dQmJJdoJE6Ujl17p_QektKQd2ZsN7-ZWVSbTi7wTwyjJykiaozB2DBY6Pua2KUMeSyBLVGbS0rDzy1Tma2jY6nCKCKrXTgN6ctPLoS1LGf02l6-_2-j--SJdX-"/>
+<div class="absolute -bottom-2 -right-2 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full flex items-center gap-1 shadow-md border border-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-caps text-label-caps">VERIFIED</span>
+</div>
+</div>
+<div class="flex-1">
+<div class="flex flex-wrap items-center justify-between gap-sm mb-xs">
+<div>
+<h1 class="font-h1 text-h1 text-on-background">Alex Rivers</h1>
+<p class="font-h3 text-h3 text-primary">Master Carpentry &amp; Architectural Restoration</p>
+</div>
+<div class="flex gap-xs">
+<button class="bg-primary text-on-primary px-lg py-md h-[48px] rounded-lg font-button text-button hover:opacity-90 transition-all active:scale-95 shadow-md">Hire Now</button>
+<button class="bg-surface-container-lowest border border-outline-variant text-primary px-lg py-md h-[48px] rounded-lg font-button text-button hover:bg-surface-container-low transition-all">Message</button>
+</div>
+</div>
+<div class="flex flex-wrap gap-md mt-md">
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-on-tertiary-container">star</span>
+<span class="font-bold">4.9</span>
+<span class="text-on-surface-variant">(124 Reviews)</span>
+</div>
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-slate-500">location_on</span>
+<span class="text-on-surface-variant">Seattle, WA</span>
+</div>
+<div class="flex items-center gap-base">
+<span class="material-symbols-outlined text-slate-500">work</span>
+<span class="text-on-surface-variant">15 Years Exp.</span>
+</div>
+</div>
+</div>
+</div>
+<hr class="my-md border-outline-variant"/>
+<div>
+<h3 class="font-h3 text-h3 mb-xs">Professional Bio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                        Specializing in heritage property restoration and custom interior woodwork, I bring over 15 years of technical expertise to high-stakes residential projects. My approach combines traditional craftsmanship with modern project management efficiency. Every joint, finish, and structural detail is executed with mathematical precision to ensure both aesthetic brilliance and lifelong durability. 
+                    </p>
+</div>
+</div>
+<!-- Right: Skills & Progress -->
+<div class="md:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md">PROFILE STRENGTH</h3>
+<div class="flex gap-1 h-2 mb-sm">
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-surface-container-high rounded-full"></div>
+</div>
+<p class="text-body-sm text-on-surface-variant">92% Complete - Outstanding Reputation</p>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-md">CORE SKILLS</h3>
+<div class="flex flex-wrap gap-xs">
+<span class="bg-surface-container text-on-secondary-container px-3 py-1 rounded-full text-body-sm font-semibold border border-outline-variant">Structural Framing</span>
+<span class="bg-surface-container text-on-secondary-container px-3 py-1 rounded-full text-body-sm font-semibold border border-outline-variant">CNC Routing</span>
+<span class="bg-surface-container text-on-secondary-container px-3 py-1 rounded-full text-body-sm font-semibold border border-outline-variant">Historic Preservation</span>
+<span class="bg-surface-container text-on-secondary-container px-3 py-1 rounded-full text-body-sm font-semibold border border-outline-variant">Fine Finishes</span>
+<span class="bg-surface-container text-on-secondary-container px-3 py-1 rounded-full text-body-sm font-semibold border border-outline-variant">Custom Cabinetry</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Bento Grid -->
+<section class="mb-lg">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-h2 text-h2">Portfolio Highlights</h2>
+<button class="text-primary font-button text-button flex items-center gap-xs hover:underline">
+                    View Gallery <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Case Study 1 -->
+<div class="md:col-span-2 bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm group">
+<div class="grid grid-cols-2 h-80">
+<div class="relative overflow-hidden border-r border-outline-variant">
+<img class="w-full h-full object-cover grayscale transition-transform duration-500 group-hover:scale-105" data-alt="A detailed 'Before' photo of a dilapidated Victorian staircase with peeling paint and cracked wood. The lighting is dim and dusty, emphasizing the neglect and the massive restoration task ahead. The composition is a straight-on shot of the architectural decay." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYyLqNTkZep2KoQqHlIhO0WAcH-MZaH2hkcxH8mpp-zWlXLLmpQv5X1-Op22Ei3bsQSeSC-uTJnzey6MyXpj4Qu5lfO3mQ-WtqpLeL3sjygcrYb_TWph4g6RXmJGSeAbh67kQzosM16m1Z3E7BRfOAfj0H7uMJJquGor9kE26OzR9vMTd6Ml753QyXK5hr7Od7QM3D9fA-v8yEZ0iMgy0kiNk24LPB-_gw6d5uiswj0ogLei1_7hyw6ruLGJpXQhpIQjquCcW4FUAx"/>
+<div class="absolute top-4 left-4 bg-on-background/60 backdrop-blur-md text-white px-3 py-1 rounded-full font-label-caps text-[10px]">BEFORE</div>
+</div>
+<div class="relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A stunning 'After' photo of the same Victorian staircase, now meticulously restored to its original glory. The mahogany wood glows with a deep, hand-rubbed finish under warm, sophisticated interior lighting. The environment is clean, luxurious, and modern-professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoSJklQ7cojNirz7Vsr3sx-MUxQlOLpKUiwiMmbdVnMfLPBi91yTpTLVpJDnnw7O6gcGo8JHZZv0Y2LUx2MyJPC2i50WFKs6eYenrQ0U7wUuudAPoCoV5rp5z88HxFl6bpYrXkiASSUl4bT6NPo5NGU9B3240zCKdPq4752Lc7GQnoTinREoHsR2x9l0LXdbyMHRKHS8c_jyua3AbnyQm6Fai3vScGzkl65g3vU1Ob5UyraLwPruGPlx-7v6AJtiCgBglEIBHjA9rG"/>
+<div class="absolute top-4 left-4 bg-secondary text-on-secondary px-3 py-1 rounded-full font-label-caps text-[10px]">AFTER</div>
+</div>
+</div>
+<div class="p-md">
+<h4 class="font-h3 text-h3 mb-xs text-on-background">Historic Victorian Staircase Restoration</h4>
+<p class="text-on-surface-variant">Full structural reinforcement and surface restoration of a 110-year-old spiral staircase using period-correct materials and techniques.</p>
+</div>
+</div>
+<!-- Case Study 2 -->
+<div class="flex flex-col gap-gutter">
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex-1 group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Close-up shot of custom-built modern kitchen cabinetry. The focus is on the flawless joinery and the rich texture of the walnut wood. Lighting is bright and neutral, highlighting the professional finish and contemporary design. Part of a luxury home renovation project." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzZl-2d8KLQq799d13qdt5cjcEWpUFFV2ez2BD90zR4ESodR39ZmxziV4DeEkbEPDwWsDtCoBxjBPloflB77VfoFKj-D2TrrXs5Moa_eKHF-Nrq60thlM8iGLlS0eesujo0P7yZ1aNhz12FGjWKy0Hb0oIKnwRVLGfKHOYNsdXMoEG7J6Qdu7j3_wpq-XNXpWhNawx97dEyddt1Q1vjeVf3_mbZrEHjrzpFVMKtgBZJfIqp7hdqZQyAffsHhaWegX2hGxu0N5KeQQ6"/>
+</div>
+<div class="p-sm">
+<span class="font-label-caps text-[10px] text-secondary mb-xs block">RESIDENTIAL</span>
+<h4 class="font-bold mb-base text-on-background">Walnut Island Build</h4>
+<p class="text-body-sm text-on-surface-variant">Integrated hidden storage solutions.</p>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm flex-1 group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A wide architectural shot of a modern timber-framed vaulted ceiling in a high-end corporate office lobby. The structural beams create a dramatic geometric pattern against a white ceiling. Lighting is crisp, professional, and enhances the sense of scale and craftsmanship." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7KFATcE3N3fccYzRVuAQz1f5cgq1pt6YKuLDQ7-YpXWZ2PLUmM77iXbtgWw0N-T3m6LhhVx4efovShSu3Ie-Oi5nUlrpkXMUaqkhCFIWVCI1adOeHSx8VG3iWSsRvmzoHACd0cYwxSfQy_vIAcXaE1q68lb-9AW7vRSP5emT96rnuTdN6-YmE_qx8WNA5WZepcKozv7g-zt7MXlGjM_9l56ZRW8W4UWhm13p3j8tmPkxFUAivAuJ_06Uvn2VfjjPoUKjrREdldxwm"/>
+</div>
+<div class="p-sm">
+<span class="font-label-caps text-[10px] text-secondary mb-xs block">COMMERCIAL</span>
+<h4 class="font-bold mb-base text-on-background">Vaulted Timber Ceiling</h4>
+<p class="text-body-sm text-on-surface-variant">Engineered Douglas Fir installation.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Client Reviews Section -->
+<section class="max-w-[800px]">
+<div class="flex items-center justify-between mb-md">
+<h2 class="font-h2 text-h2">Client Reviews</h2>
+<div class="bg-surface-container-low px-4 py-2 rounded-lg border border-outline-variant">
+<span class="font-bold text-on-background">4.9/5</span>
+<span class="text-on-surface-variant ml-1">Overall Satisfaction</span>
+</div>
+</div>
+<div class="space-y-sm">
+<!-- Review 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">MS</div>
+<div>
+<h4 class="font-bold text-on-background">Marcus Sterling</h4>
+<p class="text-body-sm text-on-surface-variant">Property Manager • Oct 2023</p>
+</div>
+</div>
+<div class="flex text-on-tertiary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<p class="text-on-surface-variant leading-relaxed">
+                        "Alex is a rare find in the industry. We hired him for a complex restoration project that two other contractors declined. His attention to detail is obsessive in the best way possible. The final result didn't just meet our specs—it exceeded them. Professional, punctual, and highly transparent about costs."
+                    </p>
+<div class="mt-sm flex items-center gap-xs">
+<span class="bg-secondary/10 text-secondary px-2 py-1 rounded text-[10px] font-bold">PROJECT COMPLETED</span>
+<span class="text-body-sm text-slate-400">|</span>
+<span class="text-body-sm text-on-surface-variant">Historic Restoration</span>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-md shadow-sm">
+<div class="flex justify-between items-start mb-sm">
+<div class="flex items-center gap-sm">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary">JL</div>
+<div>
+<h4 class="font-bold text-on-background">Janet Lin</h4>
+<p class="text-body-sm text-on-surface-variant">Interior Designer • Aug 2023</p>
+</div>
+</div>
+<div class="flex text-on-tertiary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+</div>
+<p class="text-on-surface-variant leading-relaxed">
+                        "Incredible craftsmanship on the custom walnut built-ins. Alex understood the design intent immediately and offered technical suggestions that made the final piece even more functional. Communication was top-tier throughout the 4-week build."
+                    </p>
+<div class="mt-sm flex items-center gap-xs">
+<span class="bg-secondary/10 text-secondary px-2 py-1 rounded text-[10px] font-bold">PROJECT COMPLETED</span>
+<span class="text-body-sm text-slate-400">|</span>
+<span class="text-body-sm text-on-surface-variant">Custom Cabinetry</span>
+</div>
+</div>
+<button class="w-full py-md border border-dashed border-outline rounded-xl text-on-surface-variant font-button text-button hover:bg-surface-container transition-all">
+                    Load 12 more reviews
+                </button>
+</div>
+</section>
+</main>
+<!-- SideNavBar (Hidden on Mobile) -->
+<aside class="hidden xl:flex h-screen w-64 fixed left-0 top-0 border-r border-slate-200 bg-white flex-col pt-20 pb-6 z-40">
+<div class="px-6 mb-lg">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A small, circular professional avatar of Alex Rivers, the expert contractor. The image is clear and professional, maintaining brand consistency with the main profile portrait. The background is a clean studio gray." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACbejcnwK8qzlU_UCVLFeCxcENn_gCt7_qmpylR6K3zMw-ccSv1ZVum5VMN9mphCGG69-bsZZmVlztmNgASi3G0-xpjxKmbv4nt9IYXIZJuANkJkZ8qD_Hivn9t64iHzDrZvZTCyXPP4WhvgI3NfDampnTcuEqAmTHj2dxD7eNZbW7kCgvCLjOil4vCY2rgVQb3e7InpymB3lARp607gANQvgRYiqNo1c-tl5LB7kspXTWyoatats3JhedrisCZ-xF-HslH5dh4so5"/>
+<div>
+<p class="font-manrope font-semibold text-sm text-primary">Alex Rivers</p>
+<p class="text-xs text-slate-500">Expert Contractor</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="text-slate-600 flex items-center gap-3 px-6 py-3 hover:bg-slate-50 transition-all cursor-pointer">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-manrope font-semibold text-sm">Dashboard</span>
+</div>
+<div class="text-slate-600 flex items-center gap-3 px-6 py-3 hover:bg-slate-50 transition-all cursor-pointer">
+<span class="material-symbols-outlined">distance</span>
+<span class="font-manrope font-semibold text-sm">Map View</span>
+</div>
+<div class="text-slate-600 flex items-center gap-3 px-6 py-3 hover:bg-slate-50 transition-all cursor-pointer">
+<span class="material-symbols-outlined">assignment</span>
+<span class="font-manrope font-semibold text-sm">Project List</span>
+</div>
+<div class="text-slate-600 flex items-center gap-3 px-6 py-3 hover:bg-slate-50 transition-all cursor-pointer">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="font-manrope font-semibold text-sm">Wallet</span>
+</div>
+<div class="bg-slate-100 text-primary border-r-4 border-primary flex items-center gap-3 px-6 py-3 cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="font-manrope font-semibold text-sm">Settings</span>
+</div>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-button text-sm mb-lg shadow-sm active:scale-95 duration-200">Post a Project</button>
+<div class="space-y-2">
+<div class="text-slate-600 flex items-center gap-3 py-2 hover:text-primary cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">support</span>
+<span class="font-manrope font-semibold text-sm">Help Center</span>
+</div>
+<div class="text-slate-600 flex items-center gap-3 py-2 hover:text-error cursor-pointer">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="font-manrope font-semibold text-sm">Logout</span>
+</div>
+</div>
+</div>
+</aside>
+</body></html>

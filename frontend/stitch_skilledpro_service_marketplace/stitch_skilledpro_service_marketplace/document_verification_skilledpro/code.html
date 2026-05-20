@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Document Verification | ProMarket</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#d3e4fe",
+                        "on-background": "#0b1c30",
+                        "surface": "#f8f9ff",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-surface-variant": "#45464e",
+                        "surface-container": "#e5eeff",
+                        "primary": "#2E3A59",
+                        "on-error": "#ffffff",
+                        "surface-container-low": "#eff4ff",
+                        "on-tertiary-container": "#e59300",
+                        "on-secondary-container": "#065f46",
+                        "on-primary-container": "#98a4c9",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#1e293b",
+                        "tertiary-container": "#553300",
+                        "secondary-container": "#d1fae5",
+                        "tertiary-fixed": "#ffddb8",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#d3e4fe",
+                        "secondary": "#10B981",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "tertiary": "#372000",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary-fixed-variant": "#005236",
+                        "secondary-fixed": "#10B981",
+                        "on-error-container": "#93000a",
+                        "outline": "#75777e",
+                        "background": "#f8f9ff",
+                        "outline-variant": "#c6c6ce",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "surface-bright": "#f8f9ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "primary-fixed": "#dae2ff",
+                        "on-surface": "#0b1c30",
+                        "inverse-primary": "#bac6ec",
+                        "surface-dim": "#cbdbf5",
+                        "surface-container-high": "#dce9ff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3a4666",
+                        "on-primary-fixed": "#0d1a38",
+                        "surface-tint": "#525e7f",
+                        "primary-fixed-dim": "#bac6ec",
+                        "inverse-surface": "#213145"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "16px",
+                        "md": "24px",
+                        "xs": "8px",
+                        "lg": "40px",
+                        "gutter": "24px",
+                        "container-max": "1280px",
+                        "xl": "64px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "button": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-sm": ["Manrope"],
+                        "h3": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "h2": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "button": ["16px", {"lineHeight": "1", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h1": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "600"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background min-h-screen">
+<!-- TopNavBar (Shared Component) -->
+<header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-xl shadow-slate-900/5">
+<div class="flex justify-between items-center px-6 py-3 w-full max-w-[1280px] mx-auto font-manrope antialiased tracking-tight">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black text-primary tracking-tighter">ProMarket</span>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Find Work</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Hire Talent</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Messages</a>
+<a class="text-slate-500 hover:text-primary transition-colors" href="#">Workspace</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-body-sm w-64 focus:ring-2 focus:ring-primary/20" placeholder="Search..." type="text"/>
+</div>
+<button class="p-2 hover:bg-slate-50/50 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-600">notifications</span>
+</button>
+<button class="p-2 hover:bg-slate-50/50 rounded-lg transition-colors">
+<span class="material-symbols-outlined text-slate-600">help</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKQ4g9pAC1rVOK-yndu_IV245UKGOJVWqaocd4d_uhbFjGFTacXRz1R-QgnyUqf-vXk_vxynGWrywmxpWkDeYjK_a_bjlpe-ShmSf_wB1iwr1BfR4yAKdYJbKG_SS184LWnSg2f8aU8Ik_unc4zyJ4sIy_IgqFtYDY74QGqAlM5dG8qQ-cJGLgRFaGnCesglnl6GMCROZer2q1s0YqPs8HBAuu6Zx4-Sdiz4zf24TmNSEGc4hRJEIU_U5pBJE3FYHuWyzr33fbh0JS"/>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-12 px-6 max-w-[1280px] mx-auto">
+<!-- Verification Header -->
+<div class="mb-lg">
+<h1 class="font-h1 text-h1 text-primary mb-xs">Professional Verification</h1>
+<p class="text-body-lg text-on-surface-variant max-w-2xl">Complete your document verification to unlock premium projects and build trust with top-tier clients on ProMarket.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Left Column: Step Navigation & Progress -->
+<div class="lg:col-span-4 space-y-md">
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-caps text-label-caps text-primary uppercase">Completion Progress</span>
+<span class="text-body-sm font-bold text-secondary">65%</span>
+</div>
+<!-- Custom Horizontal Meter -->
+<div class="flex gap-1 h-2 mb-md">
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-secondary rounded-full"></div>
+<div class="flex-1 bg-surface-container-highest rounded-full"></div>
+<div class="flex-1 bg-surface-container-highest rounded-full"></div>
+</div>
+<nav class="space-y-xs">
+<div class="flex items-center gap-3 p-3 bg-secondary-container/30 rounded-lg border border-secondary/20">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div>
+<p class="text-body-sm font-bold text-on-secondary-container">Personal Identity</p>
+<p class="text-[10px] text-on-secondary-container/80">Verified on Oct 12</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 bg-slate-100 rounded-lg border border-primary/10">
+<span class="material-symbols-outlined text-primary">pending_actions</span>
+<div>
+<p class="text-body-sm font-bold text-primary">Work Credentials</p>
+<p class="text-[10px] text-primary/60">Current Step</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-3 text-on-surface-variant/40">
+<span class="material-symbols-outlined">lock</span>
+<p class="text-body-sm font-bold">Tax Information</p>
+</div>
+</nav>
+</div>
+<div class="bg-primary p-md rounded-xl text-white">
+<h3 class="font-h3 text-body-md mb-xs">Trust Guarantee</h3>
+<p class="text-body-sm text-slate-300 mb-sm">Verified workers earn 40% more on average and get access to exclusive corporate contracts.</p>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+<span class="text-label-caps font-manrope">Secure 256-bit Encryption</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Verification Action Area -->
+<div class="lg:col-span-8 space-y-md">
+<!-- Status Banner -->
+<div class="bg-amber-50 border border-amber-200 p-sm rounded-xl flex items-start gap-4">
+<span class="material-symbols-outlined text-amber-600 mt-1">info</span>
+<div>
+<p class="text-body-sm font-bold text-amber-900">Credentials Under Review</p>
+<p class="text-body-sm text-amber-800/80">Our compliance team is currently reviewing your Electrical Engineering license. This usually takes 24-48 hours.</p>
+</div>
+</div>
+<!-- Bento Grid for Document Uploads -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-sm">
+<!-- ID Card Verification (Status: Approved) -->
+<div class="bg-white p-md rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex justify-between items-start mb-sm">
+<div class="w-12 h-12 bg-slate-50 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">badge</span>
+</div>
+<span class="px-3 py-1 bg-emerald-50 text-secondary text-[10px] font-bold rounded-full border border-emerald-100 uppercase tracking-wider">Approved</span>
+</div>
+<h3 class="font-h3 text-h3 text-primary mb-2">Identity Proof</h3>
+<p class="text-body-sm text-slate-500 mb-md">Government-issued ID or Passport used for KYC compliance.</p>
+</div>
+<div class="flex items-center justify-between pt-sm border-t border-slate-100">
+<span class="text-body-sm font-semibold text-slate-400">national_id_front.jpg</span>
+<button class="text-primary hover:underline text-body-sm font-bold">View</button>
+</div>
+</div>
+<!-- Work Credentials (Status: Pending Action) -->
+<div class="bg-white p-md rounded-xl border-2 border-dashed border-slate-200 shadow-sm flex flex-col items-center justify-center text-center group hover:border-primary/40 transition-colors cursor-pointer">
+<div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-md group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">upload_file</span>
+</div>
+<h3 class="font-h3 text-h3 text-primary mb-2">Work License</h3>
+<p class="text-body-sm text-slate-500 mb-md">Upload your professional certification or trade license.</p>
+<button class="bg-primary text-white px-6 py-3 rounded-lg font-button hover:bg-primary-container active:scale-95 transition-all">Upload Document</button>
+</div>
+</div>
+<!-- Structured Detail Card: Detailed Instructions -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="p-md border-b border-slate-100 flex justify-between items-center">
+<h3 class="font-h3 text-body-lg text-primary">Upload Requirements</h3>
+<span class="text-body-sm text-slate-400">Last updated: 2 days ago</span>
+</div>
+<div class="p-md grid grid-cols-1 md:grid-cols-3 gap-md">
+<div class="space-y-sm">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<p class="text-body-sm font-bold">High Resolution</p>
+<p class="text-body-sm text-slate-500">Ensure all text and photos are clearly visible without blur or glare.</p>
+</div>
+<div class="space-y-sm">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<p class="text-body-sm font-bold">Valid Dates</p>
+<p class="text-body-sm text-slate-500">Documents must be current and not expired within the next 3 months.</p>
+</div>
+<div class="space-y-sm">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<p class="text-body-sm font-bold">Full Frame</p>
+<p class="text-body-sm text-slate-500">The entire document must be within the photo frame including all 4 corners.</p>
+</div>
+</div>
+</div>
+<!-- Image Showcase Card -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden grid md:grid-cols-2">
+<div class="p-md flex flex-col justify-center">
+<h3 class="font-h3 text-h3 text-primary mb-md">Why verify your credentials?</h3>
+<ul class="space-y-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-1">check</span>
+<span class="text-body-md">Get the "Expert Verified" badge on your profile.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-1">check</span>
+<span class="text-body-md">Bid on high-value corporate projects ($5k+).</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-1">check</span>
+<span class="text-body-md">Priority support and faster payment processing.</span>
+</li>
+</ul>
+</div>
+<div class="h-64 md:h-auto min-h-[300px]">
+<img alt="Expert working" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7SS7TNPgJVntM5IbrL0An_iR6AlLrJ9OicNAoUuO6W-uyq2hRf94XEmfX-gF89J7Jxx2bnBCLHtEV3KRFaL7Vo6KjmvPBppX7I5PbMTHz4t-6n4D2NsVCom_xm0fJPAEm3JJHmBA7rKN3x0U38KtZ7VI-qEujMkF_v1KFFFERlI8bmCV0QperM3A4Z6-wwoGx1sKdDDAhXHlUhgxRpmsEXMq7inVV1HouBb4S8r7jZnFQUJyxKjm1f19puW_bAZ0LaXWuInYmZ66Q"/>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar (Contextual) -->
+<footer class="fixed bottom-0 w-full bg-white/95 backdrop-blur-md border-t border-slate-100 p-4 md:hidden">
+<div class="flex justify-between items-center max-w-[1280px] mx-auto">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-[10px] font-bold">Home</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">assignment</span>
+<span class="text-[10px] font-bold">Projects</span>
+</button>
+<div class="relative -top-8">
+<button class="w-14 h-14 bg-primary text-white rounded-full shadow-lg shadow-primary/30 flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</div>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">wallet</span>
+<span class="text-[10px] font-bold">Earnings</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-slate-400">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Profile</span>
+</button>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#dfc38b",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-tertiary-fixed": "#261a00",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#525e7f",
+                    "on-primary": "#ffffff",
+                    "surface-container-highest": "#d3e4fe",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#00714d",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#fddfa4",
+                    "surface-dim": "#cbdbf5",
+                    "on-tertiary-container": "#bca26c",
+                    "tertiary": "#312300",
+                    "inverse-surface": "#213145",
+                    "on-surface-variant": "#45464e",
+                    "on-primary-container": "#98a4c9",
+                    "surface": "#f8f9ff",
+                    "tertiary-container": "#4a380c",
+                    "on-primary-fixed": "#0d1a38",
+                    "primary-fixed": "#dae2ff",
+                    "on-error": "#ffffff",
+                    "surface-variant": "#d3e4fe",
+                    "on-surface": "#0b1c30",
+                    "on-secondary-fixed": "#002113",
+                    "surface-container-high": "#dce9ff",
+                    "inverse-primary": "#bac6ec",
+                    "background": "#f8f9ff",
+                    "surface-container-low": "#eff4ff",
+                    "secondary-container": "#6cf8bb",
+                    "on-background": "#0b1c30",
+                    "on-secondary-fixed-variant": "#005236",
+                    "secondary-fixed-dim": "#4edea3",
+                    "secondary-fixed": "#6ffbbe",
+                    "outline": "#75777e",
+                    "on-tertiary-fixed-variant": "#574417",
+                    "primary-fixed-dim": "#bac6ec",
+                    "on-primary-fixed-variant": "#3a4666",
+                    "secondary": "#006c49",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f8f9ff",
+                    "primary-container": "#2e3a59",
+                    "on-error-container": "#93000a",
+                    "outline-variant": "#c6c6ce",
+                    "primary": "#182442",
+                    "surface-container": "#e5eeff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "12px",
+                    "xl": "80px",
+                    "md": "24px",
+                    "xs": "4px",
+                    "base": "8px",
+                    "container-max": "1280px",
+                    "lg": "48px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                    "body-md": ["Manrope"],
+                    "h1": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "button": ["Manrope"],
+                    "label-caps": ["Manrope"],
+                    "body-sm": ["Manrope"],
+                    "h3": ["Manrope"],
+                    "display": ["Manrope"],
+                    "h2": ["Manrope"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1": ["32px", {"lineHeight": "1.25", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "button": ["16px", {"lineHeight": "1", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "h3": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e5eeff 100%);
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background antialiased min-h-screen flex flex-col">
+<!-- TopAppBar Navigation Shell (Suppressed context check: This is a signup page, but TopAppBar is usually present for Brand/Home navigation) -->
+<header class="fixed top-0 left-0 w-full flex justify-between items-center px-8 h-16 bg-white/70 backdrop-blur-md z-50 border-b border-slate-200/50 shadow-sm font-manrope antialiased tracking-tight">
+<div class="text-xl font-extrabold text-slate-900">SkilledPro</div>
+<div class="hidden md:flex gap-8 items-center">
+<nav class="flex gap-6">
+<a class="text-slate-500 font-medium hover:text-slate-700 transition-colors duration-200" href="#">Browse Jobs</a>
+<a class="text-slate-500 font-medium hover:text-slate-700 transition-colors duration-200" href="#">Find Pros</a>
+<a class="text-slate-500 font-medium hover:text-slate-700 transition-colors duration-200" href="#">How it Works</a>
+</nav>
+<div class="h-6 w-px bg-slate-200"></div>
+<a class="text-slate-900 font-bold border-b-2 border-slate-900 pb-1" href="#">Sign Up</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors"><span class="material-symbols-outlined text-slate-800">search</span></button>
+<button class="p-2 hover:bg-slate-50 rounded-full transition-colors"><span class="material-symbols-outlined text-slate-800">account_circle</span></button>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center pt-24 pb-12 hero-bg relative overflow-hidden">
+<!-- Abstract Background Elements -->
+<div class="absolute top-[-10%] right-[-5%] w-[400px] h-[400px] bg-primary-fixed/20 rounded-full blur-3xl"></div>
+<div class="absolute bottom-[-10%] left-[-5%] w-[300px] h-[300px] bg-secondary-container/10 rounded-full blur-3xl"></div>
+<div class="container-max w-full max-w-[1000px] mx-auto px-gutter grid grid-cols-1 lg:grid-cols-2 gap-xl relative z-10">
+<!-- Left Side: Value Prop -->
+<div class="flex flex-col justify-center space-y-md hidden lg:flex">
+<h1 class="font-display text-display text-primary">Join the world's most elite professional marketplace.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                    Access high-tier projects or hire verified industry experts through our secure, glass-transparent ecosystem.
+                </p>
+<div class="space-y-sm pt-md">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+<div>
+<p class="font-h3 text-h3 text-primary text-sm">Verified Credentials</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Every professional profile is rigorously vetted.</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">shield_with_heart</span>
+</div>
+<div>
+<p class="font-h3 text-h3 text-primary text-sm">Secure Escrow</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Payments are protected until work is approved.</p>
+</div>
+</div>
+</div>
+<div class="pt-lg">
+<div class="flex -space-x-4">
+<img alt="" class="w-12 h-12 rounded-full border-4 border-white shadow-sm" data-alt="A close-up professional headshot of a smiling man in a business casual navy blazer. The lighting is soft and natural, suggesting a high-end corporate office environment. The image is crisp with a shallow depth of field, focusing on the subject's friendly and confident expression, maintaining the SkilledPro professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_kVsHB9uuyWR9MrXmp9ppDYbALwumCOieJjhx3G8qbTBNsCZXpDfhkSkWGCpBaVtclzZ7k7vFvqK9aLjfaZnE89L9JerZn9Jdn3KXz1-vIoHUtSHeYpqAdhRwVs5OAB4AUmWourT-9SQZ3jcaixfPZCgkbmS5UgZCiiJOf5uEWhtEgYFm1l56akOCfXY9FNOYG0CNnPYcD8L8ZnyWqwRtarLLqgVsJJgLXI2HvbGU7hIVXDe1QYtouJRasTwHSWR6ycy9Z5H8IQ1J"/>
+<img alt="" class="w-12 h-12 rounded-full border-4 border-white shadow-sm" data-alt="A professional portrait of a woman in a light gray tailored suit, set against a bright, airy architectural background. The lighting is clean and high-key, reflecting a modern and trustworthy professional brand. She looks directly at the camera with an approachable and expert demeanor, perfectly aligned with a premium service marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnTdg9hN73J1PM1qHbT9jBZrU-v2_ogFjzASgmyS_RfpDE1f3fdRhsP_K14NJUXtQatZ7fNu4C6JdwJCoNhLWMm4xp3tr3RR5AbuD8YhtAvSscmB5CgktnccR4guRo2RgRQ7FHQooFwOAK5F9LoOlsQU1jdmMW3Tt0AMkZXqWwCjkIlXChOoFADUVzLstujN5A7at7hkmQCeBRfsrBEgyz8YefX_Ld0m-knaZCMOSDlzpJmdMz_E7XZL_934nutR3dc_iKfIAAN8SM"/>
+<img alt="" class="w-12 h-12 rounded-full border-4 border-white shadow-sm" data-alt="A sharp, professional headshot of a diverse male expert wearing glasses and a crisp white shirt. The background is a blurred modern workspace with hints of glass and steel. The overall tone is sophisticated and competent, emphasizing the high-tier talent available on the SkilledPro platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCh2m52fs2e3ZJAyOTMukkN03u5ELHguDjW7qQlt0Uz6qt-Cn-MfyiJ8IWZ4m3j792toFZcdCQnuHebkpu4DRU53KR0TeiFexG2q2KboqvueF1b9vpzjL8xDBtkykLpREDHzaaEVadamAXEGxrlzT1T9Zu52a0c1jQymLl3Ui5s8ugQWjvaxuOgzb0C8m11xBAQ90C1Mj02FQMEIVZZAkh0ncQGbefAA0do9JSThndtwKYRoetYlKm2nwhQNYxSf9bAPbQWgFsmf0ve"/>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-sm">Join 50k+ verified professionals today.</p>
+</div>
+</div>
+<!-- Right Side: Signup Form -->
+<div class="glass-panel p-md md:p-lg rounded-xl shadow-xl flex flex-col space-y-md">
+<div class="space-y-xs">
+<h2 class="font-h1 text-h1 text-primary">Create your account</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Step 1 of 2: Basic Information</p>
+</div>
+<form class="space-y-md">
+<!-- User Type Selection -->
+<div class="grid grid-cols-2 gap-sm">
+<label class="relative flex flex-col items-center justify-center p-md border-2 border-primary bg-primary/5 rounded-lg cursor-pointer transition-all duration-200 group">
+<input checked="" class="sr-only" name="user_type" type="radio" value="hire"/>
+<span class="material-symbols-outlined text-primary mb-xs" style="font-variation-settings: 'FILL' 1;">person_search</span>
+<span class="font-button text-button text-primary text-sm">I want to hire</span>
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-primary text-base">check_circle</span>
+</div>
+</label>
+<label class="relative flex flex-col items-center justify-center p-md border-2 border-slate-200 hover:border-primary/50 bg-white rounded-lg cursor-pointer transition-all duration-200 group">
+<input class="sr-only" name="user_type" type="radio" value="work"/>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary transition-colors mb-xs">engineering</span>
+<span class="font-button text-button text-slate-600 group-hover:text-primary text-sm">I want to work</span>
+</label>
+</div>
+<div class="space-y-sm">
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant">FULL NAME</label>
+<input class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-400" placeholder="Johnathan Doe" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant">BUSINESS EMAIL</label>
+<input class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-400" placeholder="john@company.com" type="email"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-caps text-label-caps text-on-surface-variant">PASSWORD</label>
+<input class="w-full bg-slate-50 border border-slate-200 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all placeholder:text-slate-400" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<div class="flex items-start gap-sm">
+<input class="mt-1 rounded border-slate-300 text-primary focus:ring-primary" id="terms" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant" for="terms">
+                            I agree to the <a class="text-primary font-semibold underline" href="#">Terms of Service</a> and acknowledge the <a class="text-primary font-semibold underline" href="#">Privacy Policy</a>.
+                        </label>
+</div>
+<button class="w-full bg-primary text-white font-button text-button py-4 rounded-lg shadow-lg hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-sm" type="submit">
+                        Create Account
+                        <span class="material-symbols-outlined text-white">arrow_forward</span>
+</button>
+</form>
+<div class="pt-sm border-t border-slate-200 flex flex-col items-center space-y-sm">
+<div class="flex items-center gap-xs px-3 py-1 bg-on-secondary-container/10 rounded-full">
+<span class="material-symbols-outlined text-on-secondary-container text-sm" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label-caps text-[10px] text-on-secondary-container">SECURE 256-BIT ENCRYPTION</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Already have an account? <a class="text-primary font-bold hover:underline" href="#">Log In</a>
+</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Navigation Shell -->
+<footer class="w-full border-t border-slate-200 bg-slate-50 py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-6 font-manrope text-xs tracking-wide">
+<div class="flex flex-col gap-2 items-center md:items-start">
+<span class="font-bold text-slate-900 text-lg">SkilledPro</span>
+<p class="text-slate-600">© 2024 SkilledPro Marketplace. Secure Escrow Enabled.</p>
+</div>
+<div class="flex gap-8">
+<a class="text-slate-500 hover:text-slate-800 transition-colors duration-200" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors duration-200" href="#">Trust &amp; Safety</a>
+<a class="text-slate-500 hover:text-slate-800 transition-colors duration-200" href="#">Help Center</a>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 rounded bg-slate-200 flex items-center justify-center"><span class="material-symbols-outlined text-slate-500 text-sm">language</span></div>
+<div class="w-8 h-8 rounded bg-slate-200 flex items-center justify-center"><span class="material-symbols-outlined text-slate-500 text-sm">support_agent</span></div>
+</div>
+</footer>
+</body></html>

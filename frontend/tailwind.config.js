@@ -1,0 +1,61 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#182442",
+        "primary-container": "#2e3a59",
+        "on-primary": "#ffffff",
+        "on-primary-container": "#98a4c9",
+        "secondary": "#006c49",
+        "secondary-light": "#10B981",
+        "secondary-container": "#d1fae5",
+        "on-secondary": "#ffffff",
+        "on-secondary-container": "#065f46",
+        "surface": "#f8f9ff",
+        "surface-container": "#e5eeff",
+        "surface-container-low": "#eff4ff",
+        "surface-container-high": "#dce9ff",
+        "on-surface": "#0b1c30",
+        "on-surface-variant": "#45464e",
+        "background": "#f8f9ff",
+        "on-background": "#0b1c30",
+        "outline": "#75777e",
+        "outline-variant": "#c6c6ce",
+        "error": "#ba1a1a",
+        "error-container": "#ffdad6",
+        "primary-fixed-dim": "#bac6ec",
+      },
+      fontFamily: {
+        "manrope": ["Manrope", "sans-serif"],
+        "inter": ["Inter", "sans-serif"],
+      },
+      fontSize: {
+        "display": ["48px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "800" }],
+        "h1": ["32px", { lineHeight: "1.25", fontWeight: "700" }],
+        "h2": ["24px", { lineHeight: "1.3", fontWeight: "700" }],
+        "h3": ["20px", { lineHeight: "1.4", fontWeight: "600" }],
+        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+        "body-sm": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.05em", fontWeight: "700" }],
+        "button": ["16px", { lineHeight: "1", letterSpacing: "0.01em", fontWeight: "600" }],
+      },
+      spacing: {
+        "gutter": "24px",
+        "container-max": "1280px",
+      },
+      borderRadius: {
+        "DEFAULT": "0.5rem",
+        "lg": "0.75rem",
+        "xl": "1rem",
+        "2xl": "1.5rem",
+      },
+    },
+  },
+  plugins: [],
+}
