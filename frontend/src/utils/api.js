@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const DEFAULT_API_ORIGIN = 'http://localhost:5001';
+const DEFAULT_API_ORIGIN = import.meta.VITE_API_ORIGIN;
 
 const trimTrailingSlash = (value = '') => value.replace(/\/+$/, '');
 
