@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
+import api from '../utils/api';
 
 export default function Login() {
   const [form, setForm] = useState({ email: '', password: '' });
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
+  const [resendLoading, setResendLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +28,28 @@ export default function Login() {
       }
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSendOtp = async () => {
+    if (!form.email || !form.email.trim()) {
+      toast.error('Enter your email to receive a verification code');
+      return;
+    }
+    setResendLoading(true);
+    try {
+      const { data } = await api.post('/auth/send-login-otp', { email: form.email });
+      toast.success(data.message || 'Verification code sent');
+      // If backend returns devOtp in non-production, pass it to the verify page so dev testing works
+      const params = new URLSearchParams();
+      params.set('email', form.email);
+      if (data?.devOtp) params.set('devOtp', data.devOtp);
+      navigate(`/verify-email?${params.toString()}`);
+    } catch (err) {
+      const msg = err.response?.data?.message || 'Failed to send verification code';
+      toast.error(msg);
+    } finally {
+      setResendLoading(false);
     }
   };
 
@@ -156,9 +180,19 @@ export default function Login() {
 
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <label className="text-label-caps text-slate-500 font-inter tracking-wider">PASSWORD</label>
-                  <a href="#" className="text-xs font-semibold text-primary hover:underline">Forgot password?</a>
-                </div>
+                    <label className="text-label-caps text-slate-500 font-inter tracking-wider">PASSWORD</label>
+                    <div className="flex items-center gap-4">
+                      <a href="#" className="text-xs font-semibold text-primary hover:underline">Forgot password?</a>
+                      <button
+                        type="button"
+                        onClick={handleSendOtp}
+                        disabled={resendLoading}
+                        className="text-xs font-semibold text-indigo-600 hover:underline disabled:opacity-50"
+                      >
+                        {resendLoading ? 'Sending...' : 'Send verification code'}
+                      </button>
+                    </div>
+                  </div>
                 <div className="relative">
                   <span
                     className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"

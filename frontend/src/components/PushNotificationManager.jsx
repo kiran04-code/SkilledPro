@@ -10,7 +10,12 @@ export default function PushNotificationManager() {
 
   useEffect(() => {
     if (user) {
-      requestForToken();
+      (async () => {
+        try {
+          const token = await requestForToken();
+          if (token) console.log('FCM token registered for user');
+        } catch (err) { console.warn('requestForToken failed', err); }
+      })();
 
       const setupListener = async () => {
         try {

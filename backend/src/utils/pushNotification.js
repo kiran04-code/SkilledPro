@@ -46,7 +46,7 @@ const sendPushNotification = async (userId, title, body, data = {}) => {
   try {
     const user = await User.findById(userId);
     if (!user || !user.fcmToken) {
-      console.log(`Push notification skipped: No FCM token for user ${userId}`);
+      console.log(`Push notification skipped: No FCM token for user ${userId} (user found: ${!!user})`);
       return;
     }
 
@@ -68,7 +68,7 @@ const sendPushNotification = async (userId, title, body, data = {}) => {
     }
 
     const response = await admin.messaging().send(message);
-    console.log('Push notification sent successfully:', response);
+    console.log('Push notification sent successfully to user', userId, 'response:', response);
     return response;
   } catch (error) {
     console.error('Error sending push notification:', error);

@@ -33,8 +33,15 @@ const userSchema = new mongoose.Schema({
   isVerified: { type: Boolean, default: false }, // Kept for backward compatibility but deprecated in favor of verificationStatus
   isAdmin: { type: Boolean, default: false },
   emailVerified: { type: Boolean, default: false },
+  profileImage: { type: String, default: '' },
+  companyName: { type: String, default: '' },
+  bio: { type: String, default: '' },
   verificationToken: { type: String, default: null },
   verificationTokenExpiry: { type: Date, default: null },
+  // One-time-password fields (for email OTP verification)
+  otp: { type: String, default: null },
+  otpExpires: { type: Date, default: null },
+  lastOtpSentAt: { type: Date, default: null },
   avgRating: { type: Number, default: 0 },
   totalReviews: { type: Number, default: 0 },
   totalJobsDone: { type: Number, default: 0 },

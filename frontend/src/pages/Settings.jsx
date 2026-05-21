@@ -5,7 +5,7 @@ import api from '../utils/api';
 import toast from 'react-hot-toast';
 
 export default function Settings() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [emailAlerts, setEmailAlerts] = useState(true);
 
@@ -48,14 +48,22 @@ export default function Settings() {
   return (
     <div className="max-w-3xl mx-auto px-5 py-10 md:py-16">
       <div className="flex items-center justify-between mb-6">
-        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-zinc-600 hover:text-indigo-600 transition-colors font-medium">
+          <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-zinc-600 hover:text-indigo-600 transition-colors font-medium">
           <span className="material-symbols-outlined text-sm">arrow_back</span>
           Back
         </button>
-        <button onClick={() => window.location.reload()} className="flex items-center gap-2 text-zinc-600 hover:text-indigo-600 transition-colors font-medium">
-          <span className="material-symbols-outlined text-sm">refresh</span>
-          Reload
-        </button>
+          <div className="flex items-center gap-3">
+            <button onClick={() => window.location.reload()} className="flex items-center gap-2 text-zinc-600 hover:text-indigo-600 transition-colors font-medium">
+              <span className="material-symbols-outlined text-sm">refresh</span>
+              Reload
+            </button>
+            <button
+              onClick={() => { logout(); navigate('/login'); }}
+              className="px-3 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-colors"
+            >
+              Sign out
+            </button>
+          </div>
       </div>
 
       <div className="bg-white p-8 rounded-lg border border-zinc-200 shadow-sm">

@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import toast from 'react-hot-toast';
+import VerifyModal from '../components/VerifyModal';
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { motion } from '../utils/motion';
+import OTPInput from '../components/OTPInput';
+import Stepper from '../components/Stepper';
+import PremiumInput from '../components/PremiumInput';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -19,25 +24,22 @@ function LocationPicker({ onLocationSelect }) {
 }
 
 export const CATEGORY_SKILLS = {
-  'IT & Software': ['Web Developer', 'App Developer', 'Frontend Developer', 'Backend Developer', 'Full Stack Developer', 'DevOps Engineer', 'Database Administrator', 'Cloud Architect', 'Cybersecurity Analyst', 'Quality Assurance', 'Systems Admin', 'Data Scientist', 'AI/ML Engineer'],
-  'Design & Creative': ['Graphic Designer', 'UI/UX Designer', 'Logo Designer', 'Illustrator', 'Video Editor', 'Animator', 'Photographer', 'Interior Designer', 'Fashion Designer', '3D Modeler', 'Art Director', 'Voice Actor'],
-  'Writing & Translation': ['Copywriter', 'Translator', 'Proofreader', 'Content Writer', 'Technical Writer', 'Ghostwriter', 'Grant Writer', 'Transcriptionist', 'Resume Writer'],
-  'Sales & Marketing': ['SEO Specialist', 'Social Media Manager', 'Email Marketer', 'Sales Representative', 'Market Researcher', 'Digital Marketer', 'PR Specialist', 'Telemarketer', 'Lead Generator'],
-  'Admin & Support': ['Virtual Assistant', 'Data Entry', 'Customer Support', 'Project Manager', 'Transcription', 'Research', 'Tech Support', 'HR Specialist'],
-  'Finance & Accounting': ['Accountant', 'Bookkeeper', 'Financial Analyst', 'Tax Preparer', 'Business Consultant', 'Payroll Specialist', 'Auditor'],
-  'Engineering & Architecture': ['Civil Engineer', 'Mechanical Engineer', 'Electrical Engineer', 'Architect', 'CAD Designer', 'Structural Engineer'],
-  'Home & Maintenance': ['Plumber', 'Painter', 'Electrician', 'Carpenter', 'Gardener', 'Mason', 'Cleaner', 'Pest Control', 'HVAC Technician', 'Roofing', 'Landscaping'],
-  'Repair & Automotive': ['AC Repair', 'Mobile Repair', 'Laptop Repair', 'Welder', 'Mechanic', 'Appliance Repair', 'Auto Detailing', 'Plumbing Repair'],
-  'Personal & Event Services': ['Fitness Trainer', 'Tutor', 'Chef', 'Pet Sitter', 'Driver', 'Event Planner', 'DJ', 'Caterer', 'Make-up Artist', 'Photographer'],
-  'Legal Services': ['Lawyer', 'Paralegal', 'Contract Drafting', 'Intellectual Property', 'Corporate Law', 'Legal Research']
+  'IT & Software': ['Web Developer', 'App Developer', 'Frontend Developer', 'Backend Developer'],
+  'Design & Creative': ['Graphic Designer', 'UI/UX Designer', 'Logo Designer'],
+  'Writing & Translation': ['Copywriter', 'Translator', 'Proofreader'],
 };
 
 export default function Register() {
-  const [form, setForm] = useState({ name: '', email: '', password: '', phone: '', location: '', lat: null, lng: null, category: '', skills: [], role: 'client' });
+  const [form, setForm] = useState({ name: '', email: '', password: '', phone: '', location: '', lat: null, lng: null, category: '', skills: [], role: 'client', companyName: '', bio: '' });
   const [loading, setLoading] = useState(false);
+  const [verifyModalOpen, setVerifyModalOpen] = useState(false);
+  const [serverMessage, setServerMessage] = useState('');
+  const [serverDevOtp, setServerDevOtp] = useState('');
+  const [serverOtpSent, setServerOtpSent] = useState(false);
   const [showMap, setShowMap] = useState(false);
   const [step, setStep] = useState(1);
-  const { register } = useAuth();
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const { register, logout } = useAuth();
   const navigate = useNavigate();
 
   const reverseGeocode = async (lat, lng) => {
@@ -93,177 +95,132 @@ export default function Register() {
     try {
       const data = await register(finalForm);
       toast.success(data.message || 'Account created. Please verify your email.');
-      navigate(`/verify-email?email=${encodeURIComponent(finalForm.email)}`);
-    } catch (err) {
-      toast.error(err.response?.data?.message || 'Registration failed');
-    } finally { setLoading(false); }
+      setServerMessage(data.message || 'Account created. Please verify your email.');
+      if (data?.devOtp) setServerDevOtp(data.devOtp);
+      setServerOtpSent(Boolean(data?.otpSent || data?.devOtp));
+      try { logout(); } catch (e) { localStorage.removeItem('token'); localStorage.removeItem('user'); }
+      setVerifyModalOpen(true);
+    } catch (err) { toast.error(err.response?.data?.message || 'Registration failed'); }
+    finally { setLoading(false); }
   };
 
-  return (
-    <div className="min-h-[calc(100vh-64px)] flex flex-col">
-      {/* Main content - split layout */}
-      <div className="flex-1 grid grid-cols-1 lg:grid-cols-2">
-        {/* Left: Branding panel */}
-        <div className="hidden lg:flex flex-col justify-center px-16 py-20 bg-surface">
-          <h1 className="font-manrope text-display text-on-surface tracking-tight mb-6" style={{ fontSize: 42, lineHeight: 1.15 }}>
-            Join the world's most elite professional marketplace.
-          </h1>
-          <p className="text-body-lg text-slate-600 mb-12 max-w-md">
-            Access high-tier projects or hire verified industry experts through our secure, glass-transparent ecosystem.
-          </p>
+  useEffect(() => {
+    if (!verifyModalOpen || !serverOtpSent) return;
+    const t = setTimeout(() => {
+      const params = new URLSearchParams();
+      params.set('email', form.email);
+      if (serverDevOtp) params.set('devOtp', serverDevOtp);
+      setVerifyModalOpen(false);
+      navigate(`/verify-email?${params.toString()}`);
+    }, 2500);
+    return () => clearTimeout(t);
+  }, [verifyModalOpen, serverOtpSent]);
 
-          {/* Trust items */}
-          <div className="space-y-6 mb-12">
-            <div className="flex items-start gap-4">
-              <span className="material-symbols-outlined text-secondary text-xl flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
+  return (
+    <div className="min-h-[calc(100vh-64px)] bg-gradient-to-br from-indigo-50 to-purple-50 flex items-center justify-center py-12">
+      <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8 px-6">
+        {/* Left - branding */}
+        <div className="hidden lg:flex flex-col justify-center rounded-2xl p-10 bg-white/40 backdrop-blur-md shadow-2xl border border-white/20">
+          <h1 className="text-4xl font-extrabold text-slate-900 mb-4">Join SkilledPro</h1>
+          <p className="text-slate-600 mb-6">Create a premium profile to access verified projects and trusted contractors. Choose your role and get started.</p>
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-indigo-600/10 flex items-center justify-center">🔒</div>
               <div>
-                <p className="font-manrope font-bold text-on-surface text-body-sm">Verified Credentials</p>
-                <p className="text-slate-500 text-body-sm">Every professional profile is rigorously vetted.</p>
+                <p className="font-semibold">Secure onboarding</p>
+                <p className="text-xs text-slate-500">Enterprise-grade security and verification</p>
               </div>
             </div>
-            <div className="flex items-start gap-4">
-              <span className="material-symbols-outlined text-secondary text-xl flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>shield</span>
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-violet-600/10 flex items-center justify-center">⚡</div>
               <div>
-                <p className="font-manrope font-bold text-on-surface text-body-sm">Secure Escrow</p>
-                <p className="text-slate-500 text-body-sm">Payments are protected until work is approved.</p>
+                <p className="font-semibold">Fast hiring</p>
+                <p className="text-xs text-slate-500">Find or post jobs quickly with smart matching</p>
               </div>
             </div>
           </div>
-
-          <p className="text-slate-500 text-body-sm">Join 50k+ verified professionals today.</p>
         </div>
 
-        {/* Right: Form panel */}
-        <div className="flex items-start justify-center px-8 py-10 bg-white">
-          <div className="w-full max-w-md">
-            <div className="mb-8">
-              <h2 className="font-manrope text-h1 text-on-surface mb-2">Create your account</h2>
-              <p className="text-slate-500 text-body-sm">Step {step} of 2: {step === 1 ? 'Basic Information' : 'Location & Skills'}</p>
-            </div>
+        {/* Right - form */}
+        <motion.div initial={{ scale: 0.99 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }} className="bg-white rounded-2xl shadow-xl p-8">
+          <Stepper step={step} labels={[ 'Role', 'Details', 'Professional', 'Location', 'Verify' ]} onStepClick={(s) => setStep(s)} />
 
+          <form onSubmit={handleSubmit} className="mt-6 space-y-6">
             {step === 1 && (
-              <div className="space-y-6">
-                {/* Role selector */}
-                <div className="grid grid-cols-2 gap-4">
-                  {[
-                    { value: 'client', icon: 'hub', label: 'I want to hire' },
-                    { value: 'worker', icon: 'engineering', label: 'I want to work' },
-                  ].map(r => (
-                    <button
-                      key={r.value}
-                      type="button"
-                      onClick={() => setForm({ ...form, role: r.value })}
-                      className={`relative p-6 border rounded-xl text-center transition-all ${
-                        form.role === r.value
-                          ? 'border-primary bg-white shadow-md'
-                          : 'border-slate-200 bg-white hover:border-slate-300'
-                      }`}
-                    >
-                      {form.role === r.value && (
-                        <span className="absolute top-2 right-2 material-symbols-outlined text-secondary text-lg" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
-                      )}
-                      <span className="material-symbols-outlined text-3xl text-primary mb-2 block">{r.icon}</span>
-                      <span className="font-manrope font-semibold text-on-surface text-body-sm">{r.label}</span>
-                    </button>
-                  ))}
-                </div>
-
-                {/* Form fields */}
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-label-caps text-slate-500 mb-2 font-inter">FULL NAME</label>
-                  <input
-                    type="text" required value={form.name}
-                    onChange={e => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg text-body-sm font-inter"
-                    placeholder="Johnathan Doe"
-                  />
+                  <button type="button" onClick={() => setForm({ ...form, role: 'client' })} className={`w-full p-6 rounded-xl border ${form.role === 'client' ? 'border-indigo-500 bg-indigo-50 shadow' : 'border-slate-200'}`}>
+                    <p className="font-semibold">I want to hire</p>
+                    <p className="text-xs text-slate-500">Post projects and hire professionals</p>
+                  </button>
                 </div>
-
                 <div>
-                  <label className="block text-label-caps text-slate-500 mb-2 font-inter">BUSINESS EMAIL</label>
-                  <input
-                    type="email" required value={form.email}
-                    onChange={e => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg text-body-sm font-inter"
-                    placeholder="john@company.com"
-                  />
+                  <button type="button" onClick={() => setForm({ ...form, role: 'worker' })} className={`w-full p-6 rounded-xl border ${form.role === 'worker' ? 'border-indigo-500 bg-indigo-50 shadow' : 'border-slate-200'}`}>
+                    <p className="font-semibold">I want to work</p>
+                    <p className="text-xs text-slate-500">Find projects and grow your portfolio</p>
+                  </button>
                 </div>
-
-                <div>
-                  <label className="block text-label-caps text-slate-500 mb-2 font-inter">PASSWORD</label>
-                  <input
-                    type="password" required value={form.password}
-                    onChange={e => setForm({ ...form, password: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg text-body-sm font-inter"
-                    placeholder="••••••••"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-label-caps text-slate-500 mb-2 font-inter">PHONE NUMBER <span className="text-slate-300 font-normal">(optional)</span></label>
-                  <input
-                    type="tel" value={form.phone}
-                    onChange={e => setForm({ ...form, phone: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg text-body-sm font-inter"
-                    placeholder="10-digit number"
-                  />
-                </div>
-
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (!form.name || !form.email || !form.password) { toast.error('Please fill all required fields'); return; }
-                    setStep(2);
-                  }}
-                  className="w-full py-3.5 bg-primary text-on-primary rounded-lg font-manrope font-semibold text-button shadow-lg shadow-primary/20 hover:bg-primary-container transition-all active:scale-[0.98] flex items-center justify-center gap-2"
-                >
-                  Create Account <span className="material-symbols-outlined text-lg">arrow_forward</span>
-                </button>
-
-                <div className="text-center mt-4">
-                  <div className="flex items-center justify-center gap-2 text-secondary text-label-caps mb-3">
-                    <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>verified_user</span>
-                    SECURE 256-BIT ENCRYPTION
-                  </div>
-                  <p className="text-body-sm text-slate-500">
-                    Already have an account? <Link to="/login" className="font-bold text-primary hover:underline">Log In</Link>
-                  </p>
-                </div>
-              </div>
+              </motion.div>
             )}
 
             {step === 2 && (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Location */}
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="space-y-4">
+                <PremiumInput label="Full name" value={form.name} onChange={(v) => setForm({ ...form, name: v })} />
+                <PremiumInput label="Email" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} />
                 <div>
-                  <label className="block text-label-caps text-slate-500 mb-2 font-inter">LOCATION</label>
-                  <input
-                    required value={form.location}
-                    onChange={e => setForm({ ...form, location: e.target.value })}
-                    className="w-full px-4 py-3 border border-slate-200 rounded-lg text-body-sm font-inter mb-2"
-                    placeholder="Enter your address"
-                  />
-                  <div className="flex gap-2">
-                    <button type="button" onClick={handleGetLocation}
-                      className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-lg text-body-sm text-slate-600 hover:bg-slate-50 transition-colors">
-                      <span className="material-symbols-outlined text-lg">my_location</span> Use GPS
-                    </button>
-                    <button type="button" onClick={() => setShowMap(!showMap)}
-                      className="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-lg text-body-sm text-slate-600 hover:bg-slate-50 transition-colors">
-                      <span className="material-symbols-outlined text-lg">map</span> Pick on Map
-                    </button>
+                  <label className="text-sm font-medium text-slate-600 mb-2 block">Password</label>
+                  <div className="relative">
+                    <input value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} type={passwordVisible ? 'text' : 'password'} className="w-full px-4 py-3 border rounded-lg" />
+                    <button type="button" onClick={() => setPasswordVisible(p => !p)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500">{passwordVisible ? 'Hide' : 'Show'}</button>
                   </div>
-                  {form.lat && (
-                    <p className="text-xs text-secondary mt-2 flex items-center gap-1">
-                      <span className="material-symbols-outlined text-sm">check_circle</span>
-                      Coordinates: {form.lat.toFixed(4)}, {form.lng.toFixed(4)}
-                    </p>
-                  )}
                 </div>
+                <PremiumInput label="Phone (optional)" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} />
+              </motion.div>
+            )}
 
-                {/* Map modal */}
+            {step === 3 && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="space-y-4">
+                {form.role === 'worker' ? (
+                  <>
+                    <div>
+                      <label className="text-sm font-medium text-slate-600 mb-2 block">Category</label>
+                      <div className="flex gap-2 flex-wrap">
+                        {Object.keys(CATEGORY_SKILLS).map(cat => (
+                          <button key={cat} type="button" onClick={() => setForm({ ...form, category: cat })} className={`px-3 py-1.5 rounded-full border ${form.category === cat ? 'bg-indigo-600 text-white' : 'bg-white'}`}>{cat}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-slate-600 mb-2 block">Skills (max 2)</label>
+                      <div className="flex gap-2 flex-wrap">
+                        {CATEGORY_SKILLS[form.category || Object.keys(CATEGORY_SKILLS)[0]]?.map(skill => (
+                          <button key={skill} type="button" onClick={() => toggleSkill(skill)} className={`px-3 py-1.5 rounded-full border ${form.skills.includes(skill) ? 'bg-secondary text-white' : 'bg-white'}`}>{skill}</button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-slate-600 mb-2 block">Bio</label>
+                      <textarea value={form.bio} onChange={(e) => setForm({ ...form, bio: e.target.value })} className="w-full p-3 border rounded-lg" />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <PremiumInput label="Company name" value={form.companyName} onChange={(v) => setForm({ ...form, companyName: v })} />
+                    <PremiumInput label="Company description" value={form.bio} onChange={(v) => setForm({ ...form, bio: v })} textarea />
+                  </>
+                )}
+              </motion.div>
+            )}
+
+            {step === 4 && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="space-y-4">
+                <PremiumInput label="Address" value={form.location} onChange={(v) => setForm({ ...form, location: v })} />
+                <div className="flex gap-2">
+                  <button type="button" onClick={handleGetLocation} className="flex-1 py-2 border rounded-lg">Use GPS</button>
+                  <button type="button" onClick={() => setShowMap(s => !s)} className="flex-1 py-2 border rounded-lg">Pick on Map</button>
+                </div>
                 {showMap && (
-                  <div className="border border-slate-200 rounded-xl overflow-hidden" style={{ height: 250 }}>
+                  <div className="h-56 border rounded-lg overflow-hidden">
                     <MapContainer center={[form.lat || 18.5, form.lng || 73.8]} zoom={13} style={{ height: '100%', width: '100%' }}>
                       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
                       <LocationPicker onLocationSelect={handleMapSelect} />
@@ -271,81 +228,44 @@ export default function Register() {
                     </MapContainer>
                   </div>
                 )}
-
-                {/* Worker-specific fields */}
-                {form.role === 'worker' && (
-                  <>
-                    <div>
-                      <label className="block text-label-caps text-slate-500 mb-2 font-inter">CATEGORY</label>
-                      <div className="flex flex-wrap gap-2">
-                        {Object.keys(CATEGORY_SKILLS).map(cat => (
-                          <button
-                            key={cat} type="button"
-                            onClick={() => setForm({ ...form, category: cat, skills: [] })}
-                            className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-all border ${
-                              form.category === cat
-                                ? 'bg-primary text-white border-primary'
-                                : 'bg-white text-slate-600 border-slate-200 hover:border-primary'
-                            }`}
-                          >
-                            {cat}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {form.category && (
-                      <div>
-                        <label className="block text-label-caps text-slate-500 mb-2 font-inter">SKILLS <span className="text-slate-300 font-normal">(max 2)</span></label>
-                        <div className="flex flex-wrap gap-2">
-                          {CATEGORY_SKILLS[form.category]?.map(skill => (
-                            <button
-                              key={skill} type="button"
-                              onClick={() => toggleSkill(skill)}
-                              className={`px-3 py-1.5 rounded-lg text-body-sm font-medium transition-all border ${
-                                form.skills.includes(skill)
-                                  ? 'bg-secondary text-white border-secondary'
-                                  : 'bg-white text-slate-600 border-slate-200 hover:border-secondary'
-                              }`}
-                            >
-                              {skill}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                  </>
-                )}
-
-                <div className="flex gap-3 pt-2">
-                  <button
-                    type="button" onClick={() => setStep(1)}
-                    className="flex-1 py-3 border border-slate-200 text-on-surface rounded-lg font-manrope font-semibold hover:bg-slate-50 transition-colors"
-                  >
-                    Back
-                  </button>
-                  <button
-                    type="submit" disabled={loading}
-                    className={`flex-1 py-3 bg-primary text-on-primary rounded-lg font-manrope font-semibold shadow-lg shadow-primary/20 transition-all active:scale-[0.98] ${loading ? 'opacity-60' : 'hover:bg-primary-container'}`}
-                  >
-                    {loading ? 'Creating...' : 'Create Account'}
-                  </button>
-                </div>
-              </form>
+              </motion.div>
             )}
-          </div>
-        </div>
-      </div>
 
-      {/* Footer */}
-      <div className="bg-white border-t border-slate-200 px-8 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
-        <span className="font-manrope font-bold text-slate-900 text-sm">SkilledPro</span>
-        <div className="flex gap-6 text-xs text-slate-500">
-          {['Terms of Service', 'Privacy Policy', 'Trust & Safety', 'Help Center'].map(l => (
-            <a key={l} href="#" className="hover:text-slate-800 transition-colors">{l}</a>
-          ))}
-        </div>
-      </div>
+            {step === 5 && (
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="space-y-4 text-center">
+                <p className="text-sm text-slate-600">Enter the verification code sent to <strong>{form.email}</strong></p>
+                <OTPInput value="" onChange={() => {}} />
+                <div className="flex gap-2 mt-4">
+                  <button type="button" onClick={() => setStep(4)} className="flex-1 py-2 border rounded-lg">Back</button>
+                  <button type="submit" disabled={loading} className="flex-1 py-2 bg-indigo-600 text-white rounded-lg">{loading ? 'Creating...' : 'Finish & Verify'}</button>
+                </div>
+              </motion.div>
+            )}
+
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-slate-500">Already have an account? <Link to="/login" className="text-indigo-600 font-semibold">Log in</Link></div>
+              <div className="flex gap-2">
+                {step > 1 && <button type="button" onClick={() => setStep(s => Math.max(1, s - 1))} className="text-sm px-3 py-2 border rounded">Back</button>}
+                {step < 5 && <button type="button" onClick={() => setStep(s => Math.min(5, s + 1))} className="text-sm px-4 py-2 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded">Next</button>}
+              </div>
+            </div>
+          </form>
+        </motion.div>
+      </motion.div>
+
+      <VerifyModal
+        open={verifyModalOpen}
+        email={form.email}
+        devOtp={serverDevOtp}
+        initialSent={serverOtpSent}
+        onClose={() => setVerifyModalOpen(false)}
+        onVerified={() => {
+          setVerifyModalOpen(false);
+          toast.success('Email verified — you can now log in');
+          navigate('/login');
+        }}
+      />
     </div>
   );
 }
+
