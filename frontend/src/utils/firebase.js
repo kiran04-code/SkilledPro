@@ -16,43 +16,47 @@ const messaging = getMessaging(app);
 
 export const requestForToken = async () => {
   try {
-    const currentToken = await getToken(messaging, { 
-      vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY 
-    });
-      // Ensure Notifications permission is granted
-      if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
-        await Notification.requestPermission();
-      }
+    // Ensure Notifications permission is granted
+    if (typeof Notification !== 'undefined' && Notification.permission === 'default') {
+      await Notification.requestPermission();
+    }
 
-      if (typeof Notification !== 'undefined' && Notification.permission !== 'granted') {
-        console.log('Notifications permission not granted');
-        return null;
-      }
-
-      // Register service worker explicitly so getToken can use it
-      let swReg = null;
-      try {
-        swReg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
-        // ensure activation
-        await swReg.update();
-      } catch (swErr) {
-        console.warn('Service worker registration failed:', swErr);
-      }
-
-      const currentToken = await getToken(messaging, { 
-        vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY,
-        serviceWorkerRegistration: swReg || undefined
-      });
-
-      if (currentToken) {
-        console.log('FCM Token:', currentToken);
-        // Send token to backend
-        try { await api.put('/users/fcm-token', { fcmToken: currentToken }); } catch (err) { console.warn('Failed to update FCM token on server', err.response?.data || err.message); }
-        return currentToken;
-      }
-
-      console.log('No registration token available.');
+    if (typeof Notification !== 'undefined' && Notification.permission !== 'granted') {
+      console.log('Notifications permission not granted');
       return null;
+    }
+
+    // Register service worker explicitly so getToken can use it
+    let swReg = null;
+    try {
+      if ('serviceWorker' in navigator) {
+        swReg = await navigator.serviceWorker.register('/firebase-messaging-sw.js');
+        await swReg.update();
+      }
+    } catch (swErr) {
+      console.warn('Service worker registration failed:', swErr);
+    }
+
+    const currentToken = await getToken(messaging, {
+      vapidKey: import.meta.env.VITE_FIREBASE_VAPID_KEY,
+      serviceWorkerRegistration: swReg || undefined
+    });
+
+    if (currentToken) {
+      console.log('FCM Token:', currentToken);
+      try {
+        await api.put('/users/fcm-token', { fcmToken: currentToken });
+      } catch (err) {
+        console.warn('Failed to update FCM token on server', err.response?.data || err.message);
+      }
+      return currentToken;
+    }
+
+    console.log('No registration token available.');
+    return null;
+  } catch (err) {
+    console.log('An error occurred while retrieving token. ', err);
+    return null;
   }
 };
 
